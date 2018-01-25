@@ -4,8 +4,8 @@
 # run01 and run02 are practice (need to be paired with red) length 
 # run03 and run04 are prediction error (need to be paired with blue) 
 #water is pump 0
-#milkshake is pump 1
-#rinse is pump 2
+#sweet is pump 1
+#notsweet is pump 2
 #TR 2 sec
 #the pkl file contains all study data as a back up including what files were used, useful for sanity checks
 #the csv file is easier to read
@@ -28,6 +28,7 @@ info['participant'] = 'test'
 info['run']=''
 info['color']=''
 info['session']=''
+info['flavor']=''
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -79,21 +80,22 @@ time.sleep(1)
 
 #global settings
 diameter=26.59
-mls_H2O=3.0
-mls_milk=3.0
-delivery_time=6.0
-cue_time=1.0
-wait_time=1.0
-rinse_time=2.0
+mls_sweet=3.0
+mls_unsweet=3.0
 mls_rinse=2.0
+delivery_time=6.0
+cue_time=2.0
+wait_time=2.0
+rinse_time=3.0
+
 str='\r'
-rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
-rate_milk = mls_milk*(3600.0/delivery_time)  # mls/hour 300
+rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
+rate_unsweet = mls_milk*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
 
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
-pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_H2O,'1RAT%iMH\r'%rate_milk,'2RAT%iMH\r'%rate_rinse,'0VOL%i%s'%(mls_H2O,str), '1VOL%i%s'%(mls_milk,str),'2VOL%i%s'%(mls_rinse,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
+pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_rinse,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_rinse,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 
 for c in pump_setup:
     ser.write(c)
