@@ -28,7 +28,7 @@ info['participant'] = 'test'
 info['run']=''
 info['color']=''
 info['session']=''
-info['flavor']=''
+info['flavor']='' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -170,16 +170,17 @@ print(trialcond,'trial conditions')
 
 ntrials=len(trialcond)
 pump=N.zeros(ntrials)
-#    pump zero is neutral, pump 1 is tasty, pump 2 is neutral
+#    pump zero is water, pump 1 is sweet, pump 2 is unsweet
 #    these need to match the onset files!
-if info['color']=='red':
-    pump[trialcond==1]=1 #tasty pump
-    stim_images=['waterlogo.jpg','tasty.jpg']
+
+pump[trialcond==0]=0 #water pump
+pump[trialcond==1]=1 #sweet pump
+pump[trialcond==2]=2 #unsweet pump
+
+if info['flavor']=='CO':
+    stim_images=['water.jpg','CO.jpg','UCO.jpg']
 else:
-    stim_images=['waterlogo.jpg', 'tasty.jpg', 'tasty.jpg']
-    pump[trialcond==0]=0 #water pump, water
-    pump[trialcond==1]=1 #tasty pump, milk
-    pump[trialcond==2]=0 #water pump, miss
+    stim_images=['water.jpg', 'SL.jpg', 'USL.jpg']
 
 subdata['trialdata']={}
 
