@@ -1,5 +1,5 @@
 # taste task. 1/25/2018
-#this is for BEVBITS (formally Juice)
+#this is for BEVBITS (formerly Juice)
 #water is pump 0
 #sweet is pump 1
 #notsweet is pump 2
@@ -22,9 +22,9 @@ info = {}
 info['fullscr'] = False
 info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
-info['run']=''
-info['session']=''
-info['flavor']='' #Either CO or SL
+info['run']='run02'
+info['session']='pre'
+info['flavor']='SL' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -78,7 +78,8 @@ time.sleep(1)
 diameter=26.59
 mls_sweet=3.0
 mls_unsweet=3.0
-mls_rinse=2.0
+mls_H2O=3.0
+mls_rinse=1.0
 delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
@@ -87,19 +88,19 @@ rinse_time=3.0
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
+rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
-
 #
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
-pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_rinse,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_rinse,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
+pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_H2O,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_H2O,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
+pump_phases2=['0PHN02\r','0CLDINF\r','0DIRINF\r','0RAT%iMH\r'%rate_rinse,'0VOL%i%s'%(mls_rinse,str), '0DIA%.2fMH\r'%diameter]
+
+
 
 for c in pump_setup:
     ser.write(c)
-    time.sleep(.25)
+    time.sleep(.05)
 
-for c in pump_phases:
-    ser.write(c)
-    time.sleep(.25)
 
 # HELPER FUNCTIONS
 def show_instruction(instrStim):
@@ -128,6 +129,12 @@ def check_for_quit(subdata,win):
     else:
         return False
 
+def tastes(params):
+    for c in params:
+        ser.write(c)
+        time.sleep(.05)
+
+
 # MONITOR
 win = visual.Window(monSize, fullscr=info['fullscr'],
                     monitor='testMonitor', units='deg')
@@ -137,7 +144,7 @@ fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
 scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
 
-
+tastes(pump_phases)
 
 
 #####################
@@ -235,7 +242,7 @@ def run_block():
         logging.log(logging.DATA,"injecting via pump at address %d"%pump[trial])
         t = clock.getTime()
         ratings_and_onsets.append(["injecting via pump at address %d"%pump[trial], t])
-        ser.write('%drun\r'%pump[trial])
+        ser.write('%dRUN\r'%pump[trial])
 
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
             pass
@@ -248,18 +255,18 @@ def run_block():
         
         trialdata['dis']=[ser.write('0DIS\r'),ser.write('1DIS\r')]
         print(trialdata['dis'])
-
+        tastes(pump_phases2)
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
         
-        message=visual.TextStim(win, text='', pos=(0, 0), height=2)#this lasts throught the rinse 
+        message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
         message.draw()
         win.flip()
                 
-        print 'injecting rinse via pump at address %d'%2
+        print 'injecting rinse via pump at address %d'%0
         t = clock.getTime()
-        ratings_and_onsets.append(['injecting rinse via pump at address %d'%2, t])
-        ser.write('%dRUN\r'%2)
+        ratings_and_onsets.append(['injecting rinse via pump at address %d'%0, t])
+        ser.write('%dRUN\r'%0)
         
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time):
             pass
@@ -277,6 +284,7 @@ def run_block():
         ratings_and_onsets.append(['end time', t])
         logging.log(logging.DATA,"finished")
         subdata['trialdata'][trial]=trialdata
+        tastes(pump_phases)
     win.close()
 
 
