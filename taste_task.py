@@ -1,8 +1,5 @@
 # taste task. 1/25/2018
 #this is for BEVBITS (formally Juice)
-# red=practice; blue=prediction error
-# run01 and run02 are practice (need to be paired with red) length 
-# run03 and run04 are prediction error (need to be paired with blue) 
 #water is pump 0
 #sweet is pump 1
 #notsweet is pump 2
@@ -23,10 +20,9 @@ from exptutils import *
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.USA19H1432P1.1'
+info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
 info['run']=''
-info['color']=''
 info['session']=''
 info['flavor']='' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
@@ -54,9 +50,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
@@ -90,10 +86,10 @@ rinse_time=3.0
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
-rate_unsweet = mls_milk*(3600.0/delivery_time)  # mls/hour 300
+rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
-
+#
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
 pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_rinse,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_rinse,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 
@@ -287,11 +283,11 @@ def run_block():
 run_block()
 
 subdata.update(info)
-f=open('/Users/'+info['computer']+'/Documents/Output/bromo_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/'+info['computer']+'/Documents/Output/bromo_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:
