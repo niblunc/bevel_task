@@ -140,8 +140,8 @@ def tastes(params):
 win = visual.Window(monSize, fullscr=info['fullscr'],
                     monitor='testMonitor', units='deg')
 
-visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(1,0), size=(0.75,0.75),units='height')
-visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos(-1,0), size=(0.75,0.75),units='height')
+visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0), size=(0.25,0.25),units='height')
+visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0), size=(0.25,0.25),units='height')
 
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
@@ -222,13 +222,15 @@ def run_block():
         
         trialdata={}
         trialdata['onset']=onsets[trial]
-        visual_stim.setImage(stim_images[trialcond[trial]])#set which image appears
+        visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
+        visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
         print trial
         print 'condition %d'%trialcond[trial]
         print 'showing image: %s'%stim_images[trialcond[trial]]
         t = clock.getTime()
         ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
-        visual_stim.draw()#making image of the logo appear
+        visual_stim1.draw()#making image of the logo appear
+        visual_stim2.draw()#making image of the logo appear
         logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])
             
         while clock.getTime()<trialdata['onset']:
