@@ -50,9 +50,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
@@ -185,7 +185,9 @@ pump[trialcond==1]=1 #sweet pump
 pump[trialcond==2]=2 #unsweet pump
 
 if info['flavor']=='CO':
-    stim_images=['water.jpg','CO.jpg','UCO.jpg']
+    pump[trialcond==1]=1 #sweet pump
+
+    stim_images=['CO.jpg','UCO.jpg']
 else:
     stim_images=['water.jpg', 'SL.jpg', 'USL.jpg']
 
@@ -224,6 +226,7 @@ def run_block():
         trialdata['onset']=onsets[trial]
         visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
         visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
+        message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
         print trial
         print 'condition %d'%trialcond[trial]
         print 'showing image: %s'%stim_images[trialcond[trial]]
@@ -231,6 +234,7 @@ def run_block():
         ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
+        message.draw()
         logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])
             
         while clock.getTime()<trialdata['onset']:
