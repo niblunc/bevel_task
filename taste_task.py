@@ -259,32 +259,48 @@ def run_block():
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
         
-        message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
-        message.draw()
-        win.flip()
+        if pump[trial]==0:
+            message=visual.TextStim(win, text='NO RINSE', pos=(0, 0), height=2)#lasts through the jitter 
+            message.draw()
+            win.flip()
+            t = clock.getTime()
+            ratings_and_onsets.append(["jitter", t])
+            
+            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time+jitter[trial]):
+                pass
+        
+            t = clock.getTime()
+            ratings_and_onsets.append(['end time', t])
+            logging.log(logging.DATA,"finished")
+            subdata['trialdata'][trial]=trialdata
+            tastes(pump_phases)
+        else:
+            message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
+            message.draw()
+            win.flip()
                 
-        print 'injecting rinse via pump at address %d'%0
-        t = clock.getTime()
-        ratings_and_onsets.append(['injecting rinse via pump at address %d'%0, t])
-        ser.write('%dRUN\r'%0)
+            print 'injecting rinse via pump at address %d'%0
+            t = clock.getTime()
+            ratings_and_onsets.append(['injecting rinse via pump at address %d'%0, t])
+            ser.write('%dRUN\r'%0)
         
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time):
-            pass
+            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time):
+                pass
 
-        message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#lasts through the jitter 
-        message.draw()
-        win.flip()
-        t = clock.getTime()
-        ratings_and_onsets.append(["jitter", t])
+            message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#lasts through the jitter 
+            message.draw()
+            win.flip()
+            t = clock.getTime()
+            ratings_and_onsets.append(["jitter", t])
 
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time+jitter[trial]):
-            pass
+            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time+jitter[trial]):
+                pass
         
-        t = clock.getTime()
-        ratings_and_onsets.append(['end time', t])
-        logging.log(logging.DATA,"finished")
-        subdata['trialdata'][trial]=trialdata
-        tastes(pump_phases)
+            t = clock.getTime()
+            ratings_and_onsets.append(['end time', t])
+            logging.log(logging.DATA,"finished")
+            subdata['trialdata'][trial]=trialdata
+            tastes(pump_phases)
     win.close()
 
 
