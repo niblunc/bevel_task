@@ -1,5 +1,5 @@
 # taste task. 1/25/2018
-#this is for BEVBITS (formerly Juice)
+#this the training task for BEVBITS (formerly Juice)
 #water is pump 0
 #sweet is pump 1
 #notsweet is pump 2
@@ -38,7 +38,7 @@ subdata['cwd']=os.getcwd()
 clock=core.Clock()
 datestamp=datetime.datetime.now().strftime("%Y-%m-%d-%H_%M_%S")
 subdata['datestamp']=datestamp
-subdata['expt_title']='bromo_probabilistic'
+subdata['expt_title']='bevbits_training'
 
 subdata['response']={}
 subdata['score']={}

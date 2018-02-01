@@ -175,6 +175,26 @@ print(jitter, 'jitter')
 trialcond=N.loadtxt(subdata['conds'], dtype='int')
 print(trialcond,'trial conditions')
 
+
+# specify lists of stimulus positions and their corresponding responses:
+positions = [[-0.5, 0.0], [0.5, 0.0], [0.0, -0.5], [0.0, 0.5]]
+responses = ['left', 'right', 'down', 'up'] 
+
+# create a list of indices to those lists, which will
+# get shuffled on each trial:
+indices = [0, 1, 2, 3]
+
+# randomise locations for this trial:
+shuffle(indices)
+
+matchPos = positions[indices[0]]
+mis1Pos = positions[indices[1]]
+mis2Pos = positions[indices[2]]
+mis3Pos = positions[indices[3]]
+
+# get the corresponding correct response:
+corrAns = responses[indices[0]]
+
 ntrials=len(trialcond)
 pump=N.zeros(ntrials)
 #    pump zero is water, pump 1 is sweet, pump 2 is unsweet
@@ -184,9 +204,30 @@ pump[trialcond==0]=0 #water pump
 pump[trialcond==1]=1 #sweet pump
 pump[trialcond==2]=2 #unsweet pump
 
+
+trialcond=N.zeros(24).astype('int')
+
+trialcond[0:8]=0     # water cue, water delivery
+trialcond[8:12]=1    # water cue, juice delivery
+trialcond[12:20]=2   # juice cue, juice delivery
+trialcond[20:24]=3   # juice cue, water delivery
+stim_images=['bottled_water.jpg','bottled_water.jpg','tampico.jpg','tampico.jpg']
+ntrials=len(trialcond)
+pump=N.zeros(ntrials)
+
+N.random.shuffle(trialcond)
+
+
+
+
+
+
+
+
+
+
 if info['flavor']=='CO':
     pump[trialcond==1]=1 #sweet pump
-
     stim_images=['CO.jpg','UCO.jpg']
 else:
     stim_images=['water.jpg', 'SL.jpg', 'USL.jpg']
@@ -224,6 +265,7 @@ def run_block():
         
         trialdata={}
         trialdata['onset']=onsets[trial]
+        
         visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
         visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
@@ -235,8 +277,13 @@ def run_block():
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
-        logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])
-            
+        logging.log(logging.DATA, "image=%s and image=%s"%stim_images[trialcond[trial]],stim_images[trialcond[trial]])
+        
+        if buttonPressButton.keys == 'space':
+            visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
+            visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
+            message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
+
         while clock.getTime()<trialdata['onset']:
             pass
         win.flip()
