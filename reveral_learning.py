@@ -1,4 +1,4 @@
-# taste task. 1/25/2018
+# taste task. 2/5/2018
 #this is the reversal learning task for BEVBITS (formerly Juice)
 #water is pump 0
 #sweet is pump 1
@@ -16,15 +16,9 @@ import sys,os,pickle
 import datetime
 import exptutils
 from exptutils import *
-<<<<<<< HEAD
 from random import shuffle
-import pdb
-
-
-=======
 #import pdb
 from random import shuffle
->>>>>>> ecd4adaaa729536d59cc9007f6ed256ad1fbc4bc
 
 monSize = [800, 600]
 info = {}
@@ -59,9 +53,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_files/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_files/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
@@ -99,7 +93,7 @@ rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
-#
+#pump set up stuff NEED TO CLEAN UP
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
 pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_H2O,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_H2O,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 pump_phases2=['0PHN02\r','0CLDINF\r','0DIRINF\r','0RAT%iMH\r'%rate_rinse,'0VOL%i%s'%(mls_rinse,str), '0DIA%.2fMH\r'%diameter]
@@ -144,13 +138,13 @@ def tastes(params):
         time.sleep(.05)
 
 
- MONITOR
-set the window size as win 
+# MONITOR
+# set the window size as win 
 win = visual.Window(monSize, fullscr=info['fullscr'],
                     monitor='testMonitor', units='deg')
 
-visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0), size=(0.25,0.25),units='height')
-visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0), size=(0.25,0.25),units='height')
+#visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0), size=(0.25,0.25),units='height')
+#visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0), size=(0.25,0.25),units='height')
 
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
@@ -161,7 +155,7 @@ tastes(pump_phases)
 
 
 #####################
-#load in onset files#
+######load in onset files########
 
 onsets=[]
 f=open(subdata['onset'],'r')
@@ -188,78 +182,24 @@ ntrials=len(trialcond)
 pump=N.zeros(ntrials)
 
 # specify lists of stimulus positions and their corresponding responses:
-<<<<<<< HEAD
-positions = [[0.0, -0.25], [0.0, 0.25]] #possible positions
-pump[trialcond==1]=1 #sweet pump ## possible tastes
-pump[trialcond==2]=2 #sweet pump
-stim_images=['CO.jpg','UCO.jpg'] ## possible logos
-
-print(pump)
-=======
 #set contingency that the sweet is rewarding
 positions = [(0.25,0), (-0.25,0)]
 stim_images=['sweet.jpg','unsweet.jpg']
 pump_responses = [1, 2] 
->>>>>>> ecd4adaaa729536d59cc9007f6ed256ad1fbc4bc
-
 # create a list of indices to those lists, which will
 # get shuffled on each trial:
 indices = [0, 1]
-<<<<<<< HEAD
 
-# randomise locations for this trial:
-shuffle(indices)
-
-#matchPos = positions[indices[0]]
-#mis1Pos = positions[indices[1]]
-#mis2Pos = positions[indices[2]]
-#mis3Pos = positions[indices[3]]
-
-# get the corresponding correct response:
-#corrAns = responses[indices[0]]
-
-#    pump zero is water, pump 1 is sweet, pump 2 is unsweet
-#    these need to match the onset files!
-
-#pump[trialcond==0]=0 #water pump
-#pump[trialcond==1]=1 #sweet pump
-#pump[trialcond==2]=2 #unsweet pump
-#
-
-#trialcond=N.zeros(24).astype('int')
-#
-#trialcond[0:8]=0     # water cue, water delivery
-#trialcond[8:12]=1    # water cue, juice delivery
-#trialcond[12:20]=2   # juice cue, juice delivery
-#trialcond[20:24]=3   # juice cue, water delivery
-#stim_images=['bottled_water.jpg','bottled_water.jpg','tampico.jpg','tampico.jpg']
-#ntrials=len(trialcond)
-#pump=N.zeros(ntrials)
-#
-#N.random.shuffle(trialcond)
-#
-#
-
-
-
-=======
 pos_ind= [0,1]
 # randomise locations for this trial:
 #only those things with the indices will be pairs and shuffled
 
-for i in trialcond:
-    shuffle(indices)
-    shuffle(pos_ind)
-    print("this is the image "+stim_images[indices[i]]+" this is the pump %i this is the position "%(pump_responses[indices[i]], ))
-    print(positions[pos_ind[i]])
->>>>>>> ecd4adaaa729536d59cc9007f6ed256ad1fbc4bc
+#for i in trialcond:
+#    shuffle(indices)
+#    shuffle(pos_ind)
+#    print("this is the image "+stim_images[indices[i]]+" this is the pump %i this is the position "%(pump_responses[indices[i]], ))
+#    print(positions[pos_ind[i]])
 
-#if info['flavor']=='CO':
-#    pump[trialcond==1]=1 #sweet pump
-#    stim_images=['CO.jpg','UCO.jpg']
-#else:
-#    stim_images=['water.jpg', 'SL.jpg', 'USL.jpg']
-#
 subdata['trialdata']={}
 
             
@@ -281,7 +221,7 @@ def run_block():
     clock=core.Clock()
     t = clock.getTime()
     ratings_and_onsets.append(['fixation',t])
-    show_stim(fixation_text, 8)  # 8 sec blank screen with fixation cross
+    show_stim(fixation_text, 1)  # 8 sec blank screen with fixation cross
     t = clock.getTime()
     clock.reset()
     ratings_and_onsets.append(['start',t])
@@ -316,12 +256,12 @@ def run_block():
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
-        logging.log(logging.DATA, "image=%s and image=%s"%stim_images[trialcond[trial]],stim_images[trialcond[trial]])
+#        logging.log(logging.DATA, "image=%s and image=%s"%stim_images[trialcond[trial]],stim_images[trialcond[trial]])
         
-        if buttonPressButton.keys == 'space':
-            visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
-            visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
-            message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
+#        if buttonPressButton.keys == 'space':
+#            visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
+#            visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
+#            message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
 
         while clock.getTime()<trialdata['onset']:
             pass
