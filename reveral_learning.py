@@ -184,6 +184,9 @@ pump=N.zeros(ntrials)
 # specify lists of stimulus positions and their corresponding responses:
 #set contingency that the sweet is rewarding
 positions = [(0.25,0), (-0.25,0)]
+positions_eng = ['right','left']
+pos_ind = [0,1]
+
 stim_images=['sweet.jpg','unsweet.jpg']
 pump_responses = [1, 2] 
 # create a list of indices to those lists, which will
@@ -233,35 +236,36 @@ def run_block():
         
         trialdata={}
         trialdata['onset']=onsets[trial]
+        
         #shuffle the positions
-        shuffle(positions)
-        visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[0], size=(0.25,0.25),units='height')
-        visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[1], size=(0.25,0.25),units='height')
+        shuffle(pos_ind)
+        visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[pos_ind[0]], size=(0.25,0.25),units='height')
+        visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[pos_ind[1]], size=(0.25,0.25),units='height')
+        
         #set which image is which
         shuffle(indices)
         visual_stim1.setImage(stim_images[indices[0]])#set which image appears
         visual_stim2.setImage(stim_images[indices[1]])#set which image appears
         
+        mydict={}
+        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
+        print(mydict)
         #which is sweet?
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
         
         print trial
-#        print 'condition %d'%trialcond[trial]
         print("this is the visual_stim1 is %s"%(stim_images[indices[0]]))
         print("visual_stim1 is at ")
-        print(positions[0])
-#        print 'showing image: %s'%stim_images[trialcond[trial]]
+        print(positions[pos_ind[0]])
+        print(positions_eng[pos_ind[0]])
+
         t = clock.getTime()
         ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
-#        logging.log(logging.DATA, "image=%s and image=%s"%stim_images[trialcond[trial]],stim_images[trialcond[trial]])
+        logging.log(logging.DATA, "visual_stim1=%s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]]))
         
-#        if buttonPressButton.keys == 'space':
-#            visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
-#            visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
-#            message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
 
         while clock.getTime()<trialdata['onset']:
             pass
@@ -269,7 +273,10 @@ def run_block():
             
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image
             pass
-
+        
+#        if 'l' in event.waitKeys():
+            
+        
         message=visual.TextStim(win, text='')#blank screen while the taste is delivered
         message.draw()
         win.flip()
