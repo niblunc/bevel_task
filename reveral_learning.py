@@ -7,7 +7,7 @@
 #the pkl file contains all study data as a back up including what files were used, useful for sanity checks
 #the csv file is easier to read
 #the log file also has onsets, but it has the time from when the .py file was initalized more accurate should be used for analysis
-from psychopy import visual, core, data, gui, event, data, logging
+#from psychopy import visual, core, data, gui, event, data, logging
 import csv
 import time
 import serial
@@ -16,6 +16,8 @@ import sys,os,pickle
 import datetime
 import exptutils
 from exptutils import *
+#import pdb
+from random import shuffle
 
 monSize = [800, 600]
 info = {}
@@ -29,7 +31,7 @@ info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
     core.quit()
-#######################################
+########################################
 subdata={}
 
 subdata['completed']=0
@@ -50,9 +52,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/Bev_Task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
@@ -71,7 +73,7 @@ ser = serial.Serial(
                    )
 if not ser.isOpen():
     ser.open()
-
+#
 time.sleep(1)
 
 #global settings
@@ -135,8 +137,8 @@ def tastes(params):
         time.sleep(.05)
 
 
-# MONITOR
-#set the window size as win 
+ MONITOR
+set the window size as win 
 win = visual.Window(monSize, fullscr=info['fullscr'],
                     monitor='testMonitor', units='deg')
 
@@ -175,62 +177,27 @@ print(jitter, 'jitter')
 trialcond=N.loadtxt(subdata['conds'], dtype='int')
 print(trialcond,'trial conditions')
 
+ntrials=len(trialcond)
+pump=N.zeros(ntrials)
 
 # specify lists of stimulus positions and their corresponding responses:
-positions = [[-0.5, 0.0], [0.5, 0.0], [0.0, -0.5], [0.0, 0.5]]
-responses = ['left', 'right', 'down', 'up'] 
+#set contingency that the sweet is rewarding
+positions = [(0.25,0), (-0.25,0)]
+stim_images=['sweet.jpg','unsweet.jpg']
+pump_responses = [1, 2] 
 
 # create a list of indices to those lists, which will
 # get shuffled on each trial:
-indices = [0, 1, 2, 3]
-
+indices = [0, 1]
+pos_ind= [0,1]
 # randomise locations for this trial:
-shuffle(indices)
+#only those things with the indices will be pairs and shuffled
 
-matchPos = positions[indices[0]]
-mis1Pos = positions[indices[1]]
-mis2Pos = positions[indices[2]]
-mis3Pos = positions[indices[3]]
-
-# get the corresponding correct response:
-corrAns = responses[indices[0]]
-
-ntrials=len(trialcond)
-pump=N.zeros(ntrials)
-#    pump zero is water, pump 1 is sweet, pump 2 is unsweet
-#    these need to match the onset files!
-
-pump[trialcond==0]=0 #water pump
-pump[trialcond==1]=1 #sweet pump
-pump[trialcond==2]=2 #unsweet pump
-
-
-trialcond=N.zeros(24).astype('int')
-
-trialcond[0:8]=0     # water cue, water delivery
-trialcond[8:12]=1    # water cue, juice delivery
-trialcond[12:20]=2   # juice cue, juice delivery
-trialcond[20:24]=3   # juice cue, water delivery
-stim_images=['bottled_water.jpg','bottled_water.jpg','tampico.jpg','tampico.jpg']
-ntrials=len(trialcond)
-pump=N.zeros(ntrials)
-
-N.random.shuffle(trialcond)
-
-
-
-
-
-
-
-
-
-
-if info['flavor']=='CO':
-    pump[trialcond==1]=1 #sweet pump
-    stim_images=['CO.jpg','UCO.jpg']
-else:
-    stim_images=['water.jpg', 'SL.jpg', 'USL.jpg']
+for i in trialcond:
+    shuffle(indices)
+    shuffle(pos_ind)
+    print("this is the image "+stim_images[indices[i]]+" this is the pump %i this is the position "%(pump_responses[indices[i]], ))
+    print(positions[pos_ind[i]])
 
 subdata['trialdata']={}
 
@@ -265,13 +232,24 @@ def run_block():
         
         trialdata={}
         trialdata['onset']=onsets[trial]
+        #shuffle the positions
+        shuffle(positions)
+        visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[0], size=(0.25,0.25),units='height')
+        visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[1], size=(0.25,0.25),units='height')
+        #set which image is which
+        shuffle(indices)
+        visual_stim1.setImage(stim_images[indices[0]])#set which image appears
+        visual_stim2.setImage(stim_images[indices[1]])#set which image appears
         
-        visual_stim1.setImage(stim_images[trialcond[trial]])#set which image appears
-        visual_stim2.setImage(stim_images[trialcond[trial]])#set which image appears
+        #which is sweet?
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
+        
         print trial
-        print 'condition %d'%trialcond[trial]
-        print 'showing image: %s'%stim_images[trialcond[trial]]
+#        print 'condition %d'%trialcond[trial]
+        print("this is the visual_stim1 is %s"%(stim_images[indices[0]]))
+        print("visual_stim1 is at ")
+        print(positions[0])
+#        print 'showing image: %s'%stim_images[trialcond[trial]]
         t = clock.getTime()
         ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
