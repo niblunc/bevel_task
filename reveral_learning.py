@@ -57,12 +57,15 @@ subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_fi
 subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_files/jitter_'+info['run']
 subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_Task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
+subdata['1']='left'
+subdata['9']='right'
 
 #######################################
 dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
+key_responses=[]
 #######################################
 # Serial connection and commands setup
 ser = serial.Serial(
@@ -87,6 +90,7 @@ delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
+ans_time=2.0
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
@@ -194,14 +198,6 @@ pump_responses = [1, 2]
 indices = [0, 1]
 
 pos_ind= [0,1]
-# randomise locations for this trial:
-#only those things with the indices will be pairs and shuffled
-
-#for i in trialcond:
-#    shuffle(indices)
-#    shuffle(pos_ind)
-#    print("this is the image "+stim_images[indices[i]]+" this is the pump %i this is the position "%(pump_responses[indices[i]], ))
-#    print(positions[pos_ind[i]])
 
 subdata['trialdata']={}
 
@@ -220,11 +216,13 @@ def run_block():
             logging.log(logging.DATA, "start key press")
             break
         event.clearEvents()
-
+        
     clock=core.Clock()
     t = clock.getTime()
+    
+
     ratings_and_onsets.append(['fixation',t])
-    show_stim(fixation_text, 1)  # 8 sec blank screen with fixation cross
+    show_stim(fixation_text, 8)  # 8 sec blank screen with fixation cross
     t = clock.getTime()
     clock.reset()
     ratings_and_onsets.append(['start',t])
@@ -249,18 +247,20 @@ def run_block():
         
         mydict={}
         mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
+        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
         print(mydict)
         #which is sweet?
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
         
         print trial
-        print("this is the visual_stim1 is %s"%(stim_images[indices[0]]))
-        print("visual_stim1 is at ")
-        print(positions[pos_ind[0]])
-        print(positions_eng[pos_ind[0]])
+        
+#        print("this is the visual_stim1 is %s"%(stim_images[indices[0]]))
+#        print("visual_stim1 is at ")
+#        print(positions[pos_ind[0]])
+#        print(positions_eng[pos_ind[0]])
 
         t = clock.getTime()
-        ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
+#        ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
@@ -273,21 +273,34 @@ def run_block():
             
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image
             pass
-        
-#        if 'l' in event.waitKeys():
             
-        
-        message=visual.TextStim(win, text='')#blank screen while the taste is delivered
+        message=visual.TextStim(win, text='press key now')#blank screen while the taste is delivered
         message.draw()
+        keys = event.getKeys(timeStamped=clock)
         win.flip()
+        print("here are the keys:")
+        print(keys)   
+                
+        while clock.getTime()<(trialdata['onset']+cue_time+ans_time):#show the image
+            pass
+        print("here are the keys:")
+        print(keys)  
+#        if resp_key[0] == '9':
+#            print('Hi cutie!')
+#            t = trialClock.getTime()
+#            tempArray = [t, resp_key[0]]
+#            key_responses.append(tempArray)
+#            item=subdata['9']
+#            print('THIS IS ITEM '+item)
+#            foundItems = (key for key, vals in mydict.items() if item in vals)
 
-        print 'injecting via pump at address %d'%pump[trial]
-        logging.log(logging.DATA,"injecting via pump at address %d"%pump[trial])
+#            print 'injecting via pump at address %d'%mydict[]
+#            logging.log(logging.DATA,"injecting via pump at address %d"%pump[trial])
         t = clock.getTime()
         ratings_and_onsets.append(["injecting via pump at address %d"%pump[trial], t])
         ser.write('%dRUN\r'%pump[trial])
 
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
+        while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time):
             pass
         
         message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#this lasts throught the wait
@@ -299,7 +312,7 @@ def run_block():
         trialdata['dis']=[ser.write('0DIS\r'),ser.write('1DIS\r')]
         print(trialdata['dis'])
         tastes(pump_phases2)
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
+        while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time):
             pass
         
         if pump[trial]==0:
@@ -309,7 +322,7 @@ def run_block():
             t = clock.getTime()
             ratings_and_onsets.append(["jitter", t])
             
-            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time+jitter[trial]):
+            while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time+rinse_time+jitter[trial]):
                 pass
         
             t = clock.getTime()
@@ -327,7 +340,7 @@ def run_block():
             ratings_and_onsets.append(['injecting rinse via pump at address %d'%0, t])
             ser.write('%dRUN\r'%0)
         
-            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time):
+            while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time+rinse_time):
                 pass
 
             message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#lasts through the jitter 
@@ -336,7 +349,7 @@ def run_block():
             t = clock.getTime()
             ratings_and_onsets.append(["jitter", t])
 
-            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+rinse_time+jitter[trial]):
+            while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time+rinse_time+jitter[trial]):
                 pass
         
             t = clock.getTime()
