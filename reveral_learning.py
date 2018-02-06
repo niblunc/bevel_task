@@ -64,6 +64,8 @@ logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
 key_responses=[]
+correct_response=[]
+flip=[]
 #######################################
 # Serial connection and commands setup
 ser = serial.Serial(
@@ -88,7 +90,7 @@ delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
-ans_time=2.0
+#ans_time=2.0
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
@@ -191,13 +193,6 @@ positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
 pos_ind = [0,1]
 
-stim_images=['sweet.jpg','unsweet.jpg']
-pump_responses = [1, 2] 
-# create a list of indices to those lists, which will
-# get shuffled on each trial:
-indices = [0, 1]
-
-pos_ind= [0,1]
 
 subdata['trialdata']={}
 
@@ -229,6 +224,7 @@ def run_block():
     clock.reset()
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
+    correct_response=[]
     for trial in range(ntrials):
         if check_for_quit(subdata,win):
             exptutils.shut_down_cleanly(subdata,win)
@@ -236,6 +232,21 @@ def run_block():
         
         trialdata={}
         trialdata['onset']=onsets[trial]
+        
+        ##check for correct responses##
+        if len(correct_response)>4:
+            t = clock.getTime()
+            print("4 correct responses!")
+            flip.append(t)
+            logging.log(logging.DATA, "FLIP %f"%(t))
+            stim_images=['unsweet.jpg','sweet.jpg']
+            pump_responses = [1, 2]
+            #correct_response=[]
+        else:
+            stim_images=['sweet.jpg','unsweet.jpg']
+            pump_responses = [1, 2] 
+            # create a list of indices to those lists, which will get shuffled on each trial: 
+            indices = [0, 1]
         
         #shuffle the positions
         shuffle(pos_ind)
@@ -246,21 +257,19 @@ def run_block():
         shuffle(indices)
         visual_stim1.setImage(stim_images[indices[0]])#set which image appears
         visual_stim2.setImage(stim_images[indices[1]])#set which image appears
+        
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
         mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
         mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
         print(mydict)
-        print(mydict['right'][1])
         
         #which is sweet?
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
-        
         print trial
-        
         t = clock.getTime()
+        
         #get the time of the image and log, this log is appending it to the csv file 
-        ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
@@ -318,6 +327,9 @@ def run_block():
             #trigger the pump with the numeral from the dictionary
             ser.write('%dRUN\r'%taste)
             
+        if taste == 1:
+            correct_response.append(1)
+            
                 
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
             pass
@@ -333,7 +345,7 @@ def run_block():
         trialdata['dis']=[ser.write('0DIS\r'),ser.write('1DIS\r')]
         print(trialdata['dis'])
         
-        while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time):
+        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
        
         message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
@@ -367,6 +379,7 @@ def run_block():
       
         
         print(key_responses)
+        print(correct_response)
     win.close()
 
 
