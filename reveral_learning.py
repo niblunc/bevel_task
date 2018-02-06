@@ -226,7 +226,7 @@ def run_block():
     t = clock.getTime()
     clock.reset()
     ratings_and_onsets.append(['start',t])
-    #logging.log(logging.DATA, "start")
+    logging.log(logging.DATA, "start")
     for trial in range(ntrials):
         if check_for_quit(subdata,win):
             exptutils.shut_down_cleanly(subdata,win)
@@ -244,27 +244,25 @@ def run_block():
         shuffle(indices)
         visual_stim1.setImage(stim_images[indices[0]])#set which image appears
         visual_stim2.setImage(stim_images[indices[1]])#set which image appears
-        
+        #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
         mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
         mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
         print(mydict)
         print(mydict['right'][1])
+        
         #which is sweet?
         message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
         
         print trial
         
-#        print("this is the visual_stim1 is %s"%(stim_images[indices[0]]))
-#        print("visual_stim1 is at ")
-#        print(positions[pos_ind[0]])
-#        print(positions_eng[pos_ind[0]])
-
         t = clock.getTime()
-#        ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
+        #get the time of the image and log, this log is appending it to the csv file 
+        ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
+        #this is logging when the message is shown
         logging.log(logging.DATA, "visual_stim1=%s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]]))
         
 
@@ -275,41 +273,48 @@ def run_block():
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image
             pass
             
-        message=visual.TextStim(win, text='press key now')#blank screen while the taste is delivered
-        message.draw()
+
+        # get the key press logged, and time stamped 
         keys = event.getKeys(timeStamped=clock)
-        win.flip()
+        logging.log(logging.DATA, "keypress=%s at time= %f"%(keys[0][0],keys[0][1])
         print("here are the keys:")
         print(keys)
+        
         t = clock.getTime()
+        #back up of the key press
         tempArray = [t, keys[0]]
         key_responses.append(tempArray)
-        while clock.getTime()<(trialdata['onset']+cue_time+ans_time):#show the image
+        ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
+        
+        while clock.getTime()<(trialdata['onset']+cue_time):#show the image
             pass
-        print('test')
-        print(keys[0][0])
+#        print('test')
+#        print(keys[0][0])
         
         if keys[0][0] == 'left':
-            print('Hi cutie!')
+            #from the dictionary find the pump code associated with the key press
             taste=int(mydict['left'][1])
+            #log the pump used, time, and key press
             print 'injecting via pump at address %s'%taste
-            logging.log(logging.DATA,"injecting via pump at address %d"%taste)
-            
+            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s"%(taste,keys[0][0]))
             t = clock.getTime()
-            ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
+            ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
+            #trigger pump with the numeral from the dictonary above 
             ser.write('%dRUN\r'%taste)
             
         if keys[0][0] == 'right':
-            print('Hi cutie!')
+            #from the dictonary get the pump associated with the right key press
             taste=int(mydict['right'][1])
+            #log the time, keypress, and pump 
             print 'injecting via pump at address %s'%taste
             logging.log(logging.DATA,"injecting via pump at address %d"%taste)
             
             t = clock.getTime()
             ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
+            #trigger the pump with the numeral from the dictionary
             ser.write('%dRUN\r'%taste)
             
-        while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time):
+        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
             pass
         
         message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#this lasts throught the wait
@@ -320,7 +325,7 @@ def run_block():
         
         trialdata['dis']=[ser.write('0DIS\r'),ser.write('1DIS\r')]
         print(trialdata['dis'])
-        tastes(pump_phases2)
+        
         while clock.getTime()<(trialdata['onset']+cue_time+ans_time+delivery_time+wait_time):
             pass
        
@@ -349,7 +354,7 @@ def run_block():
         ratings_and_onsets.append(['end time', t])
         logging.log(logging.DATA,"finished")
         subdata['trialdata'][trial]=trialdata
-        tastes(pump_phases)
+        
     win.close()
 
 
