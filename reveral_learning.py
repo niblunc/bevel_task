@@ -16,9 +16,10 @@ import sys,os,pickle
 import datetime
 import exptutils
 from exptutils import *
+import random
 from random import shuffle
+from itertools import cycle
 #import pdb
-from random import shuffle
 
 monSize = [800, 600]
 info = {}
@@ -193,6 +194,11 @@ positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
 pos_ind = [0,1]
 
+stim_images1=['sweet.jpg','unsweet.jpg']
+stim_images2=['unsweet.jpg','sweet.jpg']
+stim_cycle=cycle(['stim_images2','stim_images1'])
+indices=[0,1]
+pump_responses = [1, 2] 
 
 subdata['trialdata']={}
 
@@ -225,6 +231,8 @@ def run_block():
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
     correct_response=[]
+    initial_cor=4
+    i=0
     for trial in range(ntrials):
         if check_for_quit(subdata,win):
             exptutils.shut_down_cleanly(subdata,win)
@@ -233,20 +241,21 @@ def run_block():
         trialdata={}
         trialdata['onset']=onsets[trial]
         
-        ##check for correct responses##
-        if len(correct_response)>4:
-            t = clock.getTime()
-            print("4 correct responses!")
-            flip.append(t)
-            logging.log(logging.DATA, "FLIP %f"%(t))
-            stim_images=['unsweet.jpg','sweet.jpg']
-            pump_responses = [1, 2]
-            #correct_response=[]
+        from itertools import cycle
+        mySmallSquareIterator = cycle(i*i for i in range(10))
+
+        #check for correct responses##
+        if len(correct_response)<initial_cor:
+            stim_images=stim_images1
         else:
-            stim_images=['sweet.jpg','unsweet.jpg']
-            pump_responses = [1, 2] 
-            # create a list of indices to those lists, which will get shuffled on each trial: 
-            indices = [0, 1]
+            stim_images=stim_cycle.next()
+        #reset the initial correct after it expires
+        i=i+1
+        if i==initial_cor:
+            i=0
+            correct_response=[]
+            initial_cor=random.randint(3,5)
+        
         
         #shuffle the positions
         shuffle(pos_ind)
