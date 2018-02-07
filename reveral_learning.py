@@ -233,11 +233,12 @@ def run_block():
     clock.reset()
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
+    
     #initalize starting variables in the loop
     correct_response=[]
-    initial_cor=4
-    i=0
+    initial_cor=2
     stim_images=stim_cycle.next()
+    
     #start the taste loop
     for trial in range(ntrials):
         #check for quit
@@ -255,7 +256,7 @@ def run_block():
             stim_images=stim_cycle.next()
             logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
             initial_cor=random.randint(3,5)
-            logging.log(logging.DATA, 'New slip %i'%(inital_cor))
+            logging.log(logging.DATA, 'New slip %i'%(initial_cor))
             correct_response=[]
         
         
@@ -311,34 +312,31 @@ def run_block():
             #back up of the key press
             tempArray = [t, keys[0]]
             key_responses.append(tempArray)
-            ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
-        
-#        while clock.getTime()<(trialdata['onset']+cue_time):#show the image
-#            pass
-        
-        if keys[0][0] == 'left':
-            #from the dictionary find the pump code associated with the key press
-            taste=int(mydict['left'][1])
-            image=(mydict['left'][0])
-            #log the pump used, time, and key press
-            print 'injecting via pump at address %s'%taste
-            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
-            t = clock.getTime()
-            ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
-            #trigger pump with the numeral from the dictonary above 
-            ser.write('%dRUN\r'%taste)    
-        elif keys[0][0] == 'right':
-            #from the dictonary get the pump associated with the right key press
-            taste=int(mydict['right'][1])
-            image=(mydict['right'][0])
-            #log the time, keypress, and pump 
-            print 'injecting via pump at address %s'%taste
-            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
-            t = clock.getTime()
-            ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
-            #trigger the pump with the numeral from the dictionary
-            ser.write('%dRUN\r'%taste)
+            ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])     
+            if keys[0][0] == 'left':
+                #from the dictionary find the pump code associated with the key press
+                taste=int(mydict['left'][1])
+                image=(mydict['left'][0])
+                #log the pump used, time, and key press
+                print 'injecting via pump at address %s'%taste
+                logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
+                t = clock.getTime()
+                ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
+                #trigger pump with the numeral from the dictonary above 
+                ser.write('%dRUN\r'%taste)    
+            elif keys[0][0] == 'right':
+                #from the dictonary get the pump associated with the right key press
+                taste=int(mydict['right'][1])
+                image=(mydict['right'][0])
+                #log the time, keypress, and pump 
+                print 'injecting via pump at address %s'%taste
+                logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
+                t = clock.getTime()
+                ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
+                #trigger the pump with the numeral from the dictionary
+                ser.write('%dRUN\r'%taste)
         else:
+            taste=0
             t = clock.getTime()
             logging.log(logging.DATA,"Key Press Missed!")
             keys=keys.append(['MISS',t])
