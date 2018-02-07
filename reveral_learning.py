@@ -255,17 +255,10 @@ def run_block():
             stim_images=stim_cycle.next()
             logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
             initial_cor=random.randint(3,5)
+            logging.log(logging.DATA, 'New slip %i'%(inital_cor))
             correct_response=[]
         
         
-#        i=i+1
-#        print('this is the i counter %i'%i)
-#        logging.log(logging.DATA, 'this is the i counter %i'%i)
-#        logging.log(logging.DATA, 'this is the number of corrected needed to flip counter %i'%initial_cor)
-#        if i==initial_cor:
-#            i=0
-#            correct_response=[]
-#            initial_cor=random.randint(3,5)
         
         
         #shuffle the positions
@@ -310,18 +303,18 @@ def run_block():
         
         # get the key press logged, and time stamped 
         keys = event.getKeys(timeStamped=clock)
-        logging.log(logging.DATA, "keypress=%s at time= %f"%(keys[0][0],keys[0][1]))
-        print("here are the keys:")
-        print(keys)
+        if len(keys)>0:
+            logging.log(logging.DATA, "keypress=%s at time= %f"%(keys[0][0],keys[0][1]))
+            print("here are the keys:")
+            print(keys)
+            t = clock.getTime()
+            #back up of the key press
+            tempArray = [t, keys[0]]
+            key_responses.append(tempArray)
+            ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
         
-        t = clock.getTime()
-        #back up of the key press
-        tempArray = [t, keys[0]]
-        key_responses.append(tempArray)
-        ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
-        
-        while clock.getTime()<(trialdata['onset']+cue_time):#show the image
-            pass
+#        while clock.getTime()<(trialdata['onset']+cue_time):#show the image
+#            pass
         
         if keys[0][0] == 'left':
             #from the dictionary find the pump code associated with the key press
@@ -333,21 +326,25 @@ def run_block():
             t = clock.getTime()
             ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
             #trigger pump with the numeral from the dictonary above 
-            ser.write('%dRUN\r'%taste)
-            
-            
-        if keys[0][0] == 'right':
+            ser.write('%dRUN\r'%taste)    
+        elif keys[0][0] == 'right':
             #from the dictonary get the pump associated with the right key press
             taste=int(mydict['right'][1])
             image=(mydict['right'][0])
             #log the time, keypress, and pump 
             print 'injecting via pump at address %s'%taste
-            #logging.log(logging.DATA,"injecting via pump at address %d"%taste)
             logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
             t = clock.getTime()
             ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
             #trigger the pump with the numeral from the dictionary
             ser.write('%dRUN\r'%taste)
+        else:
+            t = clock.getTime()
+            logging.log(logging.DATA,"Key Press Missed!")
+            keys=keys.append(['MISS',t])
+            message=visual.TextStim(win, text='Please answer quicker', pos=(0, 0), height=2)#this lasts throught the taste
+            message.draw()
+            win.flip()
             
         if taste == 1:
             correct_response.append(1)
