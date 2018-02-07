@@ -194,9 +194,10 @@ positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
 pos_ind = [0,1]
 
-stim_images1=['sweet.jpg','unsweet.jpg']
-stim_images2=['unsweet.jpg','sweet.jpg']
-stim_cycle=cycle(['stim_images2','stim_images1'])
+#stim_images1=['sweet.jpg','unsweet.jpg']
+#stim_images2=['unsweet.jpg','sweet.jpg']
+stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
+stim_images=stim_cycle.next()
 indices=[0,1]
 pump_responses = [1, 2] 
 
@@ -221,36 +222,39 @@ def run_block():
     clock=core.Clock()
     t = clock.getTime()
     
-
+    #set up the fixation
     ratings_and_onsets.append(['fixation',t])
     logging.log(logging.DATA, "fixation %f"%t)
     show_stim(fixation_text, 8)  # 8 sec blank screen with fixation cross
+    #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
     t = clock.getTime()
+    #reset the clock so the onsets are correct (if onsets have the 8 sec in them then you dont need this)
     clock.reset()
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
+    #initalize starting variables in the loop
     correct_response=[]
     initial_cor=4
     i=0
+    #start the taste loop
     for trial in range(ntrials):
+        #check for quit
         if check_for_quit(subdata,win):
             exptutils.shut_down_cleanly(subdata,win)
             sys.exit()
-        
+        #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
+        print(initial_cor)
         
-        from itertools import cycle
-        mySmallSquareIterator = cycle(i*i for i in range(10))
 
         #check for correct responses##
-        if len(correct_response)<initial_cor:
-            stim_images=stim_images1
-        else:
+        if len(correct_response)>initial_cor:
             stim_images=stim_cycle.next()
-        #reset the initial correct after it expires
+
         i=i+1
+        print('this is the i counter %i'%i)
         if i==initial_cor:
             i=0
             correct_response=[]
