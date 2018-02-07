@@ -197,7 +197,7 @@ pos_ind = [0,1]
 #stim_images1=['sweet.jpg','unsweet.jpg']
 #stim_images2=['unsweet.jpg','sweet.jpg']
 stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
-stim_images=stim_cycle.next()
+
 indices=[0,1]
 pump_responses = [1, 2] 
 
@@ -237,6 +237,7 @@ def run_block():
     correct_response=[]
     initial_cor=4
     i=0
+    stim_images=stim_cycle.next()
     #start the taste loop
     for trial in range(ntrials):
         #check for quit
@@ -252,13 +253,19 @@ def run_block():
         #check for correct responses##
         if len(correct_response)>initial_cor:
             stim_images=stim_cycle.next()
-
-        i=i+1
-        print('this is the i counter %i'%i)
-        if i==initial_cor:
-            i=0
-            correct_response=[]
+            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
             initial_cor=random.randint(3,5)
+            correct_response=[]
+        
+        
+#        i=i+1
+#        print('this is the i counter %i'%i)
+#        logging.log(logging.DATA, 'this is the i counter %i'%i)
+#        logging.log(logging.DATA, 'this is the number of corrected needed to flip counter %i'%initial_cor)
+#        if i==initial_cor:
+#            i=0
+#            correct_response=[]
+#            initial_cor=random.randint(3,5)
         
         
         #shuffle the positions
@@ -319,9 +326,10 @@ def run_block():
         if keys[0][0] == 'left':
             #from the dictionary find the pump code associated with the key press
             taste=int(mydict['left'][1])
+            image=(mydict['left'][0])
             #log the pump used, time, and key press
             print 'injecting via pump at address %s'%taste
-            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s"%(taste,keys[0][0]))
+            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
             t = clock.getTime()
             ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
             #trigger pump with the numeral from the dictonary above 
@@ -331,10 +339,11 @@ def run_block():
         if keys[0][0] == 'right':
             #from the dictonary get the pump associated with the right key press
             taste=int(mydict['right'][1])
+            image=(mydict['right'][0])
             #log the time, keypress, and pump 
             print 'injecting via pump at address %s'%taste
-            logging.log(logging.DATA,"injecting via pump at address %d"%taste)
-            
+            #logging.log(logging.DATA,"injecting via pump at address %d"%taste)
+            logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
             t = clock.getTime()
             ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
             #trigger the pump with the numeral from the dictionary
