@@ -91,6 +91,7 @@ cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
 initial_cor=2
+flip=flip.append(initial_cor)
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
@@ -142,20 +143,19 @@ def tastes(params):
         time.sleep(.05)
 
 
-# MONITOR
+# MONITOR set up
 # set the window size as win 
 win = visual.Window(monSize, fullscr=info['fullscr'],
                     monitor='testMonitor', units='deg')
 
-#visual_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0), size=(0.25,0.25),units='height')
-#visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0), size=(0.25,0.25),units='height')
 
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
 scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
 #ImageStim(win, image=None, mask=None, units='', pos=(0.0, 0.0), size=None, ori=0.0, color=(1.0, 1.0, 1.0), colorSpace='rgb', contrast=1.0, opacity=1.0, depth=0, interpolate=False, flipHoriz=False, flipVert=False, texRes=128, name=None, autoLog=None, maskParams=None)
-tastes(pump_phases)
+
+#tastes(pump_phases)
 
 
 #####################
@@ -179,6 +179,7 @@ for i in y:
 jitter=[float(i) for i in jitter]
 print(jitter, 'jitter')
 
+#for this the trial conditions are created randomly each time so it doesn't really matter, the length is what matters
 trialcond=N.loadtxt(subdata['conds'], dtype='int')
 print(trialcond,'trial conditions')
 
@@ -191,11 +192,14 @@ positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
 pos_ind = [0,1]
 
-#stim_images1=['sweet.jpg','unsweet.jpg']
-#stim_images2=['unsweet.jpg','sweet.jpg']
+#this is setting the flip cycler, this allows for the switch when the correct response threshold has been obtained
+#this is NOT random, make sure the order is how you want
 stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
 
+#this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
 indices=[0,1]
+# sweet=1
+# unsweet=2
 pump_responses = [1, 2] 
 
 subdata['trialdata']={}
@@ -205,7 +209,7 @@ subdata['trialdata']={}
     The main run block!
 """
 
-def run_block():
+def run_block(initial_cor,correct_response):
 
     # Await scan trigger
     while True:
@@ -233,8 +237,6 @@ def run_block():
     logging.log(logging.DATA, "START")
     
     #initalize starting variables in the loop
-#    correct_response=[]
-#    initial_cor=2
     stim_images=stim_cycle.next()
     
     #start the taste loop
@@ -248,13 +250,15 @@ def run_block():
         trialdata['onset']=onsets[trial]
         print(initial_cor)
         
+        
 
         #check for correct responses##
         if len(correct_response)>initial_cor:
             stim_images=stim_cycle.next()
             logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
             initial_cor=random.randint(3,5)
-            logging.log(logging.DATA, 'New slip %i'%(initial_cor))
+            flip=flip.append(initial_cor)
+            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
             correct_response=[]
         
         
@@ -286,7 +290,7 @@ def run_block():
         visual_stim2.draw()#making image of the logo appear
         message.draw()
         #this is logging when the message is shown
-        logging.log(logging.DATA, "visual_stim1=%s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]]))
+        logging.log(logging.DATA, "%s at position=%s and %s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]],stim_images[indices[1],positions_eng[pos_ind[1]]))
 
         while clock.getTime()<trialdata['onset']:
             pass
@@ -398,7 +402,7 @@ def run_block():
     win.close()
 
 
-run_block()
+run_block(initial_cor,correct_response)
 
 subdata.update(info)
 f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
