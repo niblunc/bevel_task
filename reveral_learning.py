@@ -7,7 +7,7 @@
 #the pkl file contains all study data as a back up including what files were used, useful for sanity checks
 #the csv file is easier to read
 #the log file also has onsets, but it has the time from when the .py file was initalized more accurate should be used for analysis
-#from psychopy import visual, core, data, gui, event, data, logging
+from psychopy import visual, core, data, gui, event, data, logging
 import csv
 import time
 import serial
@@ -91,7 +91,8 @@ cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
 initial_cor=2
-flip=flip.append(initial_cor)
+fix=int(2)
+flip.append(initial_cor)
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
@@ -209,7 +210,7 @@ subdata['trialdata']={}
     The main run block!
 """
 
-def run_block(initial_cor,correct_response):
+def run_block(initial_cor,correct_response,flip,fix):
 
     # Await scan trigger
     while True:
@@ -226,7 +227,7 @@ def run_block(initial_cor,correct_response):
     #set up the fixation
     ratings_and_onsets.append(['fixation',t])
     logging.log(logging.DATA, "fixation %f"%t)
-    show_stim(fixation_text, 8)  # 8 sec blank screen with fixation cross
+    show_stim(fixation_text, fix)  # 8 sec blank screen with fixation cross
     #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
     t = clock.getTime()
@@ -257,7 +258,7 @@ def run_block(initial_cor,correct_response):
             stim_images=stim_cycle.next()
             logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
             initial_cor=random.randint(3,5)
-            flip=flip.append(initial_cor)
+            flip.append(initial_cor)
             logging.log(logging.DATA, 'New flip %i'%(initial_cor))
             correct_response=[]
         
@@ -289,23 +290,29 @@ def run_block(initial_cor,correct_response):
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
+        RT = core.Clock()
+        
         #this is logging when the message is shown
-        logging.log(logging.DATA, "%s at position=%s and %s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]],stim_images[indices[1],positions_eng[pos_ind[1]]))
-
+        logging.log(logging.DATA, "%s at position=%s and %s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]],stim_images[indices[1]],positions_eng[pos_ind[1]]))
+        
+        
         while clock.getTime()<trialdata['onset']:
             pass
         win.flip()
-            
+        
+        RT.reset() # reaction time starts immediately after flip 
+        
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image, while clock is less than onset and cue, show cue
             pass
-            
+        
+        keys = event.getKeys(timeStamped=RT)
         message=visual.TextStim(win, text='')#blank screen while the taste is delivered
         message.draw()
         win.flip()
         
         
         # get the key press logged, and time stamped 
-        keys = event.getKeys(timeStamped=clock)
+        
         if len(keys)>0:
             logging.log(logging.DATA, "keypress=%s at time= %f"%(keys[0][0],keys[0][1]))
             print("here are the keys:")
@@ -314,7 +321,7 @@ def run_block(initial_cor,correct_response):
             #back up of the key press
             tempArray = [t, keys[0]]
             key_responses.append(tempArray)
-            ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])     
+            ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
             if keys[0][0] == 'left':
                 #from the dictionary find the pump code associated with the key press
                 taste=int(mydict['left'][1])
@@ -402,7 +409,9 @@ def run_block(initial_cor,correct_response):
     win.close()
 
 
-run_block(initial_cor,correct_response)
+run_block(initial_cor,correct_response,flip,fix)
+
+subdata['key_responses']=keys_responses
 
 subdata.update(info)
 f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
