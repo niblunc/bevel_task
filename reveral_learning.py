@@ -81,30 +81,27 @@ if not ser.isOpen():
 #
 time.sleep(1)
 
-#global settings
+#global settings aka Input parameters, make sure these match with the effciciency calculation
 diameter=26.59
 mls_sweet=3.0
 mls_unsweet=3.0
-#mls_H2O=3.0
 mls_rinse=1.0
 delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
-#ans_time=2.0
+initial_cor=2
 
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
-#rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
-#pump set up stuff NEED TO CLEAN UP
+#pump set up 
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
 pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_rinse,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_rinse,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 
-
-
+#send the parameters to the pumps
 for c in pump_setup:
     ser.write(c)
     time.sleep(.05)
@@ -229,14 +226,15 @@ def run_block():
     #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
     t = clock.getTime()
+    
     #reset the clock so the onsets are correct (if onsets have the 8 sec in them then you dont need this)
     clock.reset()
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
     
     #initalize starting variables in the loop
-    correct_response=[]
-    initial_cor=2
+#    correct_response=[]
+#    initial_cor=2
     stim_images=stim_cycle.next()
     
     #start the taste loop
