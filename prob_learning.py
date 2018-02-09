@@ -284,7 +284,9 @@ def run_block(fix):
         visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[pos_ind[1]], size=(0.25,0.25),units='height')
         
         #set which image is which
-        x=N.random.choice(prob_index, 1, p=[0.34, 0.33,0.33])
+        x=int(N.random.choice(prob_index, 1, p=[0.34, 0.33,0.33]))
+        print(x)
+        
         stim_images=stim_list[x]
         trial_prob=prob_list[x]
         trial_inv_prob=inv_prob_list[x]
