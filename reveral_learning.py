@@ -30,6 +30,7 @@ info['run']='run02'
 info['session']='pre'
 info['flavor']='SL' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
+
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
     core.quit()
@@ -44,7 +45,7 @@ datestamp=datetime.datetime.now().strftime("%Y-%m-%d-%H_%M_%S")
 subdata['datestamp']=datestamp
 subdata['expt_title']='bevbits_reversal'
 
-subdata['response']={}
+subdata['key_responses']={}
 subdata['score']={}
 subdata['rt']={}
 subdata['stim_onset_time']={}
@@ -53,7 +54,7 @@ subdata['is_this_SS_trial']={}
 subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
-
+######################
 subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onsets_'+info['run']
 subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/jitter_'+info['run']
 subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/conds_'+info['run']
@@ -63,10 +64,12 @@ subdata['quit_key']='q'
 dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
+#######################################
 ratings_and_onsets = []
 key_responses=[]
 correct_response=[]
 flip=[]
+rt=[]
 #######################################
 # Serial connection and commands setup
 ser = serial.Serial(
@@ -96,6 +99,7 @@ fix=int(2)
 
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
+
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
@@ -137,8 +141,6 @@ def check_for_quit(subdata,win):
     else:
         return False
 
-
-
 def tastes(params):
     for c in params:
         ser.write(c)
@@ -153,11 +155,13 @@ win = visual.Window(monSize, fullscr=info['fullscr'],
 
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
-
-scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
-#ImageStim(win, image=None, mask=None, units='', pos=(0.0, 0.0), size=None, ori=0.0, color=(1.0, 1.0, 1.0), colorSpace='rgb', contrast=1.0, opacity=1.0, depth=0, interpolate=False, flipHoriz=False, flipVert=False, texRes=128, name=None, autoLog=None, maskParams=None)
-
-#tastes(pump_phases)
+#
+example_images=['ex1.jpg','ex2.jpg']
+example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), size=(0.25,0.25),units='height')
+example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
+example_stim1.setImage(example_images[0])#set which image appears
+example_stim2.setImage(example_images[1])#set which image appears
+scan_trigger_text = visual.TextStim(win, text='You will have 2 seconds to press the button in your hand to indicate which image gives sweet taste (left or right). After the 2 seconds you will get a taste of the juice associated with the image you chose.', pos=(0, -0.6), height=0.75)
 
 
 #####################
@@ -200,6 +204,7 @@ stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
 
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
 indices=[0,1]
+
 # sweet=1
 # unsweet=2
 pump_responses = [1, 2] 
@@ -215,8 +220,11 @@ def run_block(initial_cor,correct_response,flip,fix):
 
     # Await scan trigger
     while True:
+        example_stim1.draw()
+        example_stim2.draw()
         scan_trigger_text.draw()
         win.flip()
+        
         if 'o' in event.waitKeys():
             logging.log(logging.DATA, "start key press")
             break
@@ -224,11 +232,11 @@ def run_block(initial_cor,correct_response,flip,fix):
         
     clock=core.Clock()
     t = clock.getTime()
-    
+    RT = core.Clock()
     #set up the fixation
     ratings_and_onsets.append(['fixation',t])
     logging.log(logging.DATA, "fixation %f"%t)
-    show_stim(fixation_text, fix)  # 8 sec blank screen with fixation cross
+    show_stim(fixation_text, fix)  #blank screen with fixation cross
     #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
     t = clock.getTime()
@@ -238,15 +246,27 @@ def run_block(initial_cor,correct_response,flip,fix):
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
     
-    #initalize starting variables in the loop
+    #initalize stim images
     stim_images=stim_cycle.next()
     
     #start the taste loop
     for trial in range(ntrials):
+       
         #check for quit
         if check_for_quit(subdata,win):
             exptutils.shut_down_cleanly(subdata,win)
+            subdata.update(info)
+            f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
+            pickle.dump(subdata,f)
+            f.close()
+            
+            myfile = open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
+            wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+            wr.writerow(['event','data'])
+            for row in ratings_and_onsets:
+                wr.writerow(row)
             sys.exit()
+            
         #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
@@ -291,7 +311,7 @@ def run_block(initial_cor,correct_response,flip,fix):
         visual_stim1.draw()#making image of the logo appear
         visual_stim2.draw()#making image of the logo appear
         message.draw()
-        RT = core.Clock()
+        
         
         #this is logging when the message is shown
         logging.log(logging.DATA, "%s at position=%s and %s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]],stim_images[indices[1]],positions_eng[pos_ind[1]]))
@@ -305,17 +325,18 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image, while clock is less than onset and cue, show cue
             pass
-        
         keys = event.getKeys(timeStamped=RT)
         message=visual.TextStim(win, text='')#blank screen while the taste is delivered
         message.draw()
         win.flip()
+        print(keys)
         
         
         # get the key press logged, and time stamped 
         
         if len(keys)>0:
-            logging.log(logging.DATA, "keypress=%s at time= %f"%(keys[0][0],keys[0][1]))
+            rt.append(keys[0][1])
+            logging.log(logging.DATA, "keypress=%s RT= %f"%(keys[0][0],keys[0][1]))
             print("here are the keys:")
             print(keys)
             t = clock.getTime()
@@ -407,12 +428,14 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         print(key_responses)
         print(correct_response)
+        subdata['key_responses']=key_responses
+        subdata['rt']=rt
+
     win.close()
 
 
 run_block(initial_cor,correct_response,flip,fix)
 
-subdata['key_responses']=keys_responses
 
 subdata.update(info)
 f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
