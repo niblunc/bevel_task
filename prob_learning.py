@@ -278,8 +278,11 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
-        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
-        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
+#        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
+#        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
+        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]]]
+        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]]]
+
         print(mydict)
         
         #which is sweet?
@@ -325,8 +328,14 @@ def run_block(initial_cor,correct_response,flip,fix):
             ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
             if keys[0][0] == 'left':
                 #from the dictionary find the pump code associated with the key press
-                taste=int(mydict['left'][1])
+                
+                unsweet=int(np.random.choice(pump, 1, p=[0.2, 0.8]))
+                #taste=int(mydict['left'][1])
                 image=(mydict['left'][0])
+                if image=='sweet.jpg':
+                    sweet=int(np.random.choice(pump, 1, p=[0.8, 0.2]))
+                elif image=='unsweet.jpg':
+                   unsweet=int(np.random.choice(pump, 1, p=[0.2, 0.8]))
                 #log the pump used, time, and key press
                 print 'injecting via pump at address %s'%taste
                 logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
