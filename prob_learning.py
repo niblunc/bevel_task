@@ -209,8 +209,6 @@ inv_prob3=[0.4, 0.6]
 stim_list=[stim_images1, stim_images2, stim_images3]
 prob_list=[prob1, prob2, prob3]
 inv_prob_list=[inv_prob1, inv_prob2, inv_prob3]
-#master prob list is on indicies
-master_prob_list=[prob_list, inv_prob_list]
 prob_index=[0,1,2]
 
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
@@ -293,12 +291,15 @@ def run_block(fix):
         visual_stim1.setImage(stim_images[indices[0]])#set which image appears
         visual_stim2.setImage(stim_images[indices[1]])#set which image appears
         
+        master_prob_list=[trial_prob,trial_inv_prob]
+        
+        shuffle(indices)
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
 #        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
 #        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
-        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]], master_trial_prob[indices[1]]]
-        mydict[positions_eng[pos_ind[0]]] = [[stim_images[indices[0]], master_trial_prob[indices[0]]]
+        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]], master_prob_list[indices[1]]]
+        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]], master_prob_list[indices[0]]]
 
         print(mydict)
         
