@@ -156,7 +156,7 @@ win = visual.Window(monSize, fullscr=info['fullscr'],
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 #
-example_images=['ex1.jpg','ex2.jpg']
+example_images=['ex1.jpg','ex2.jpg'] #put the name of your image here. 
 example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), size=(0.25,0.25),units='height')
 example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
 example_stim1.setImage(example_images[0])#set which image appears
@@ -189,31 +189,35 @@ print(jitter, 'jitter')
 trialcond=N.loadtxt(subdata['conds'], dtype='int')
 print(trialcond,'trial conditions')
 
-ntrials=len(trialcond)
+ntrials=len(trialcond) #length needs to match the number of trials in your paradigm
 pump=N.zeros(ntrials)
 
 # specify lists of stimulus positions and their corresponding responses:
-#set contingency that the sweet is rewarding
+#set contingency that the sweet is rewarding. This makes three lists essentially. 
 positions = [(0.25,0), (-0.25,0)]
-positions_eng = ['right','left']
-pos_ind = [0,1]
+positions_eng = ['right','left'] #this will change for scan center buttons. 
+pos_ind = [0,1] #this allows us to flip the index number. 
 
 #this is setting the flip cycler, this allows for the switch when the correct response threshold has been obtained
 #this is NOT random, make sure the order is how you want
-stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
+#stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
+
+stim_images=(['sweet.jpg','bitter.jpg'])
 
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
-indices=[0,1]
+#indices=[0,1]
 
 # sweet=1
 # unsweet=2
-pump_responses = [1, 2] 
+pump_responses = [1, 2]
 
 subdata['trialdata']={}
 
             
 """
     The main run block!
+    The pump paradigm is actually a function... 
+    
 """
 
 def run_block(initial_cor,correct_response,flip,fix):
@@ -223,7 +227,7 @@ def run_block(initial_cor,correct_response,flip,fix):
         example_stim1.draw()
         example_stim2.draw()
         scan_trigger_text.draw()
-        win.flip()
+        win.flip() #flip = show
         
         if 'o' in event.waitKeys():
             logging.log(logging.DATA, "start key press")
@@ -234,8 +238,8 @@ def run_block(initial_cor,correct_response,flip,fix):
     t = clock.getTime()
     RT = core.Clock()
     #set up the fixation
-    ratings_and_onsets.append(['fixation',t])
-    logging.log(logging.DATA, "fixation %f"%t)
+    ratings_and_onsets.append(['fixation',t]) #this is for the csv
+    logging.log(logging.DATA, "fixation %f"%t) #this is for the log file
     show_stim(fixation_text, fix)  #blank screen with fixation cross
     #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
@@ -247,7 +251,7 @@ def run_block(initial_cor,correct_response,flip,fix):
     logging.log(logging.DATA, "START")
     
     #initalize stim images
-    stim_images=stim_cycle.next()
+    #stim_images=stim_cycle.next()
     
     #start the taste loop
     for trial in range(ntrials):
@@ -270,18 +274,18 @@ def run_block(initial_cor,correct_response,flip,fix):
         #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
-        print(initial_cor)
+        #print(initial_cor)
         
         
 
         #check for correct responses##
-        if len(correct_response)>initial_cor:
-            stim_images=stim_cycle.next()
-            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
-            initial_cor=random.randint(3,5)
-            flip.append(initial_cor)
-            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
-            correct_response=[]
+        #if len(correct_response)>initial_cor:
+            #stim_images=stim_cycle.next()
+            #logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
+            #initial_cor=random.randint(3,5)
+            #flip.append(initial_cor)
+            #logging.log(logging.DATA, 'New flip %i'%(initial_cor))
+            #correct_response=[]
         
         
         
@@ -325,7 +329,7 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image, while clock is less than onset and cue, show cue
             pass
-        keys = event.getKeys(timeStamped=RT)
+        keys = event.getKeys(timeStamped=RT)#this is logging the key press 
         message=visual.TextStim(win, text='')#blank screen while the taste is delivered
         message.draw()
         win.flip()
@@ -334,7 +338,7 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         # get the key press logged, and time stamped 
         
-        if len(keys)>0:
+        if len(keys)>0: #if a key is pressed... 
             rt.append(keys[0][1])
             logging.log(logging.DATA, "keypress=%s RT= %f"%(keys[0][0],keys[0][1]))
             print("here are the keys:")
@@ -420,7 +424,7 @@ def run_block(initial_cor,correct_response,flip,fix):
             pass
         
         t = clock.getTime()
-        ratings_and_onsets.append(['end time', t])
+        ratings_and_onsets.append(['end time', t])#this is the end of the trial, not the whole task
         logging.log(logging.DATA,"finished")
         subdata['trialdata'][trial]=trialdata
         
