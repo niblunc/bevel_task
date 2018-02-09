@@ -192,7 +192,18 @@ positions_eng = ['right','left']
 pos_ind = [0,1]
 
 #stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
-stim_images=['sweet.jpg','unsweet.jpg']
+stim_images1=['a.jpg','b.jpg']
+stim_images2=['c.jpg','d.jpg']
+stim_images3=['e.jpg','f.jpg']
+
+prob1=[0.8, 0.2]
+prob2=[0.7, 0.3]
+prob3=[0.6, 0.4]
+
+stim_list=[stim_images1, stim_images2, stim_images3]
+prob_list=[prob1, prob2, prob3]
+prob_index=[0,1,2]
+
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
 indices=[0,1]
 # sweet=1
@@ -266,7 +277,9 @@ def run_block(fix):
         visual_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=positions[pos_ind[1]], size=(0.25,0.25),units='height')
         
         #set which image is which
-        shuffle(indices)
+        x=N.random.choice(prob_index, 1, p=[0.34, 0.33,0.33])
+        stim_images=stim_list[x]
+        trial_prob=prob_list[x]
         visual_stim1.setImage(stim_images[indices[0]])#set which image appears
         visual_stim2.setImage(stim_images[indices[1]])#set which image appears
         
@@ -274,8 +287,8 @@ def run_block(fix):
         mydict={}
 #        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
 #        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
-        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]]]
-        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]]]
+        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]], trial_prob[indices[1]]]
+        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]], trial_prob[indices[0]]]
 
         print(mydict)
         
