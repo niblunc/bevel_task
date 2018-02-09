@@ -27,7 +27,6 @@ info['fullscr'] = False
 info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
 info['run']='run02'
-info['session']='pre'
 info['flavor']='SL' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
@@ -42,7 +41,7 @@ subdata['cwd']=os.getcwd()
 clock=core.Clock()
 datestamp=datetime.datetime.now().strftime("%Y-%m-%d-%H_%M_%S")
 subdata['datestamp']=datestamp
-subdata['expt_title']='bevbits_reversal'
+subdata['expt_title']='sidepiece_prob'
 
 subdata['response']={}
 subdata['score']={}
@@ -54,13 +53,13 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -90,9 +89,7 @@ delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
-#initial_cor=2 this is for flipping
 fix=int(2)
-#flip.append(initial_cor)
 
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
@@ -186,7 +183,7 @@ trialcond=N.loadtxt(subdata['conds'], dtype='int')
 print(trialcond,'trial conditions')
 
 ntrials=len(trialcond)
-pump=N.zeros(ntrials)
+#pump=N.zeros(ntrials)
 
 # specify lists of stimulus positions and their corresponding responses:
 #set contingency that the sweet is rewarding
@@ -194,10 +191,8 @@ positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
 pos_ind = [0,1]
 
-#this is setting the flip cycler, this allows for the switch when the correct response threshold has been obtained
-#this is NOT random, make sure the order is how you want
-stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
-
+#stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
+stim_images=['sweet.jpg','unsweet.jpg']
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
 indices=[0,1]
 # sweet=1
@@ -211,7 +206,7 @@ subdata['trialdata']={}
     The main run block!
 """
 
-def run_block(initial_cor,correct_response,flip,fix):
+def run_block(fix):
 
     # Await scan trigger
     while True:
@@ -239,7 +234,7 @@ def run_block(initial_cor,correct_response,flip,fix):
     logging.log(logging.DATA, "START")
     
     #initalize starting variables in the loop
-    stim_images=stim_cycle.next()
+    #stim_images=stim_cycle.next()
     
     #start the taste loop
     for trial in range(ntrials):
@@ -250,18 +245,17 @@ def run_block(initial_cor,correct_response,flip,fix):
         #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
-        print(initial_cor)
         
         
 
         #check for correct responses##
-        if len(correct_response)>initial_cor:
-            stim_images=stim_cycle.next()
-            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
-            initial_cor=random.randint(3,5)
-            flip.append(initial_cor)
-            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
-            correct_response=[]
+#        if len(correct_response)>initial_cor:
+#            stim_images=stim_cycle.next()
+#            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
+#            initial_cor=random.randint(3,5)
+#            flip.append(initial_cor)
+#            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
+#            correct_response=[]
         
         
         
@@ -331,9 +325,11 @@ def run_block(initial_cor,correct_response,flip,fix):
                 #taste=int(mydict['left'][1])
                 image=(mydict['left'][0])
                 if image=='sweet.jpg':
-                    taste=int(np.random.choice(pump, 1, p=[0.8, 0.2]))
+                    taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
                 elif image=='unsweet.jpg':
-                   taste=int(np.random.choice(pump, 1, p=[0.2, 0.8]))
+                   taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
+                print(image)
+                print(taste)
                 #log the pump used, time, and key press
                 print 'injecting via pump at address %s'%taste
                 logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
@@ -342,12 +338,14 @@ def run_block(initial_cor,correct_response,flip,fix):
                 #trigger pump with the numeral from the dictonary above 
                 ser.write('%dRUN\r'%taste)    
             elif keys[0][0] == 'right':
-                #from the dictonary get the pump associated with the right key press
+                #from the dictonary get the image associated with the right key press
                 image=(mydict['right'][0])
                 if image=='sweet.jpg':
-                    taste=int(np.random.choice(pump, 1, p=[0.8, 0.2]))
+                    taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
                 elif image=='unsweet.jpg':
-                   taste=int(np.random.choice(pump, 1, p=[0.2, 0.8]))
+                   taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
+                print(image)
+                print(taste)
                 #log the time, keypress, and pump 
                 print 'injecting via pump at address %s'%taste
                 logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
@@ -364,10 +362,7 @@ def run_block(initial_cor,correct_response,flip,fix):
             message.draw()
             win.flip()
             
-        if taste == 1:
-            correct_response.append(1)
-            
-                
+
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
             pass
         
@@ -416,13 +411,13 @@ def run_block(initial_cor,correct_response,flip,fix):
       
         
         print(key_responses)
-        print(correct_response)
+        
     win.close()
 
 
-run_block(initial_cor,correct_response,flip,fix)
+run_block(fix)
 
-subdata['key_responses']=keys_responses
+#subdata['key_responses']=keys_responses
 
 subdata.update(info)
 f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
