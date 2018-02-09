@@ -90,26 +90,27 @@ delivery_time=6.0
 cue_time=2.0
 wait_time=2.0
 rinse_time=3.0
-initial_cor=2
+#initial_cor=2 this is for flipping
 fix=int(2)
-flip.append(initial_cor)
+#flip.append(initial_cor)
 
+#pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
-#pump set up 
+#pump set up. This should autopopulate. The phase is a structure for instructions that the pumps expect. 
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
 pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_rinse,'1RAT%iMH\r'%rate_sweet,'2RAT%iMH\r'%rate_unsweet,'0VOL%i%s'%(mls_rinse,str), '1VOL%i%s'%(mls_sweet,str),'2VOL%i%s'%(mls_unsweet,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 
-#send the parameters to the pumps
+#send the parameters to the pumps. This is telling the pumps what to expect/how the task will run. 
 for c in pump_setup:
     ser.write(c)
     time.sleep(.05)
 
 
-# HELPER FUNCTIONS
+# HELPER FUNCTIONS. These are pulled from Russ. We don't change these usually. 
 def show_instruction(instrStim):
     # shows an instruction until a key is hit.
     while True:
