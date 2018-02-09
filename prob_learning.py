@@ -348,10 +348,12 @@ def run_block(fix):
                 #from the dictionary find the image code associated with the key press
                 #taste=int(mydict['left'][1])
                 image=(mydict['left'][0])
-                if image=='sweet.jpg':
-                    taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
-                elif image=='unsweet.jpg':
-                   taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
+                trial_prob=(mydict['left'][1])
+                taste=int(N.random.choice(pump_responses, 1, p=trial_prob))
+                #if image=='sweet.jpg':
+                    #taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
+                #elif image=='unsweet.jpg':
+                   #taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
                 print(image)
                 print(taste)
                 #log the pump used, time, and key press
@@ -364,10 +366,8 @@ def run_block(fix):
             elif keys[0][0] == 'right':
                 #from the dictonary get the image associated with the right key press
                 image=(mydict['right'][0])
-                if image=='sweet.jpg':
-                    taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
-                elif image=='unsweet.jpg':
-                   taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
+                trial_prob=(mydict['right'][1])
+                taste=int(N.random.choice(pump_responses, 1, p=trial_prob))
                 print(image)
                 print(taste)
                 #log the time, keypress, and pump 
