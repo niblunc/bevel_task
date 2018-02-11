@@ -24,7 +24,7 @@ info = {}
 info['fullscr'] = False
 #info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
-info['run']='run02'
+#info['run']='run02'
 #info['flavor']='SL' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
@@ -51,9 +51,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/onsets_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/onsets'
 #subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/conds_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/conds'
 subdata['quit_key']='q'
 
 #######################################
@@ -134,12 +134,6 @@ def check_for_quit(subdata,win):
 
 
 
-#def tastes(params):
-#    for c in params:
-#        ser.write(c)
-#        time.sleep(.05)
-
-
 # MONITOR set up
 # set the window size as win 
 win = visual.Window(monSize, fullscr=info['fullscr'],
@@ -153,10 +147,6 @@ scan_trigger_text = visual.TextStim(win, text='Waiting for task to begin', pos=(
 #ImageStim(win, image=None, mask=None, units='', pos=(0.0, 0.0), size=None, ori=0.0, color=(1.0, 1.0, 1.0), colorSpace='rgb', contrast=1.0, opacity=1.0, depth=0, interpolate=False, flipHoriz=False, flipVert=False, texRes=128, name=None, autoLog=None, maskParams=None)
 
 #tastes(pump_phases)
-
-
-#####################
-######load in onset files########
 
 onsets=[]
 f=open(subdata['onset'],'r')
@@ -225,23 +215,8 @@ def run_block(fix):
     clock=core.Clock()
     t = clock.getTime()
     
-    #set up the fixation
-    #ratings_and_onsets.append(['fixation',t])
-    #logging.log(logging.DATA, "fixation %f"%t)
-    #show_stim(fixation_text, fix)  # 8 sec blank screen with fixation cross
-    #log fixation
-    #logging.log(logging.DATA, "fixation end %f"%t)
-    #t = clock.getTime()
     
-    #reset the clock so the onsets are correct (if onsets have the 8 sec in them then you dont need this)
-    #clock.reset()
-    #ratings_and_onsets.append(['start',t])
-    #logging.log(logging.DATA, "START")
-    
-    #initalize starting variables in the loop
-    #stim_images=stim_cycle.next()
-    
-    #start the taste loop
+    #start the loop
     for trial in range(ntrials):
         #check for quit
         if check_for_quit(subdata,win):
@@ -250,20 +225,6 @@ def run_block(fix):
         #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
-        
-        
-
-        #check for correct responses##
-#        if len(correct_response)>initial_cor:
-#            stim_images=stim_cycle.next()
-#            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
-#            initial_cor=random.randint(3,5)
-#            flip.append(initial_cor)
-#            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
-#            correct_response=[]
-        
-        
-        
         
         #shuffle the positions
         shuffle(pos_ind)
@@ -294,7 +255,7 @@ def run_block(fix):
         
         #get the time of the image and log, this log is appending it to the csv file 
         visual_stim1.draw()#making image of the logo appear
-        visual_stim2.draw()#making image of the logo appear
+        visual_stim2.draw()
         message.draw()
         RT = core.Clock()
         
@@ -360,7 +321,7 @@ def run_block(fix):
         t = clock.getTime()
         ratings_and_onsets.append(["jitter", t])
 
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time+jitter[trial]):
+        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
         
         t = clock.getTime()
