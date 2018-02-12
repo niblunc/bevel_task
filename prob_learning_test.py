@@ -85,7 +85,7 @@ time.sleep(1)
 #mls_rinse=1.0
 delivery_time=0.5
 cue_time=2.0
-wait_time=2.0
+wait_time=1.0
 #rinse_time=3.0
 fix=int(2)
 
@@ -192,7 +192,7 @@ img_index=[0,1]
 
 #stim list is on the stim index
 stim_list=[stim_images1, stim_images2, stim_images3, stim_images4, stim_images5, stim_images6, stim_images7, stim_images8]
-stim_index=[1,2,3,4,5,6,7,8]
+stim_index=[0,1,2,3,4,5,6,7]
 
 subdata['trialdata']={}
 
@@ -341,11 +341,11 @@ run_block(fix)
 #subdata['key_responses']=keys_responses
 
 subdata.update(info)
-f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/bevel_task/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/bevel_task/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:
