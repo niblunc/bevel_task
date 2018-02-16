@@ -13,7 +13,7 @@ water<-rep(1,15)# 1 for the variable,  20 times
 all<-c(milk, water)
 ntrials.total = 30 #total number of trials
 
-dur = rep(13, ntrials.total)#length of stimulus of interest
+dur = rep(9, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
 min=1
 max=7

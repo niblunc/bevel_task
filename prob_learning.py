@@ -189,7 +189,7 @@ ntrials=len(trialcond)
 #set contingency that the sweet is rewarding
 positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
-positions_scan=['0','1']
+positions_scan=['2','1']
 pos_ind = [0,1]
 
 #stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
@@ -366,10 +366,10 @@ def run_block(fix):
                 ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
                 #trigger pump with the numeral from the dictonary above 
                 ser.write('%dRUN\r'%taste)    
-            elif keys[0][0] == '0':
+            elif keys[0][0] == '2':
                 #from the dictonary get the image associated with the right key press
-                image=(mydict['0'][0])
-                trial_prob=(mydict['0'][1])
+                image=(mydict['2'][0])
+                trial_prob=(mydict['2'][1])
                 taste=int(N.random.choice(pump_responses, 1, p=trial_prob))
                 print(image)
                 print(taste)

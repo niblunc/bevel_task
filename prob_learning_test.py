@@ -233,6 +233,9 @@ def run_block(fix):
         
         #set which image is which
         x=int(N.random.choice(stim_index, 1, p=[0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125]))
+        print("here is the list")
+        print(stim_list)
+        print(x)
         stim_img_trial=stim_list[x]
         print(stim_img_trial)
         
