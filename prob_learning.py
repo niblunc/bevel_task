@@ -1,4 +1,4 @@
-# taste task. 2/9/2018
+# taste task. 2/16/2018
 #this is the probabilistic learning task for side piece (a substudy of bevbits, formerly juice)
 #water is pump 0
 #sweet is pump 1
@@ -189,6 +189,7 @@ ntrials=len(trialcond)
 #set contingency that the sweet is rewarding
 positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
+positions_scan=['0','1']
 pos_ind = [0,1]
 
 #stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
@@ -298,10 +299,10 @@ def run_block(fix):
         shuffle(indices)
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
-#        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
-#        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
-        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]], master_prob_list[indices[1]]]
-        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]], master_prob_list[indices[0]]]
+#        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]], master_prob_list[indices[1]]]
+#        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]], master_prob_list[indices[0]]]
+        mydict[positions_scan[pos_ind[1]]] = [stim_images[indices[1]], master_prob_list[indices[1]]]
+        mydict[positions_scan[pos_ind[0]]] = [stim_images[indices[0]], master_prob_list[indices[0]]]
 
         print(mydict)
         
@@ -346,11 +347,11 @@ def run_block(fix):
             tempArray = [t, keys[0]]
             key_responses.append(tempArray)
             ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
-            if keys[0][0] == 'left':
+            if keys[0][0] == '1':
                 #from the dictionary find the image code associated with the key press
                 #taste=int(mydict['left'][1])
-                image=(mydict['left'][0])
-                trial_prob=(mydict['left'][1])
+                image=(mydict['1'][0])
+                trial_prob=(mydict['1'][1])
                 taste=int(N.random.choice(pump_responses, 1, p=trial_prob))
                 #if image=='sweet.jpg':
                     #taste=int(N.random.choice(pump_responses, 1, p=[0.5, 0.5]))
@@ -365,10 +366,10 @@ def run_block(fix):
                 ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
                 #trigger pump with the numeral from the dictonary above 
                 ser.write('%dRUN\r'%taste)    
-            elif keys[0][0] == 'right':
+            elif keys[0][0] == '0':
                 #from the dictonary get the image associated with the right key press
-                image=(mydict['right'][0])
-                trial_prob=(mydict['right'][1])
+                image=(mydict['0'][0])
+                trial_prob=(mydict['0'][1])
                 taste=int(N.random.choice(pump_responses, 1, p=trial_prob))
                 print(image)
                 print(taste)
