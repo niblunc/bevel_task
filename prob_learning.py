@@ -24,10 +24,9 @@ from itertools import cycle
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.usbserial'
-info['participant'] = 'test'
-info['run']='run02'
-info['flavor']='SL' #Either CO or SL
+info['port'] = '/dev/tty.'
+info['participant'] = ''
+info['run']='run'
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -83,18 +82,18 @@ time.sleep(1)
 #global settings aka Input parameters, make sure these match with the effciciency calculation
 diameter=26.59
 mls_sweet=3.0
-mls_unsweet=3.0
+mls_bitter=3.0
 mls_rinse=1.0
-delivery_time=6.0
+delivery_time=5.0
 cue_time=2.0
-wait_time=2.0
-rinse_time=3.0
+wait_time=1.0
+rinse_time=2.0
 fix=int(2)
 
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
-rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
+rate_unsweet = mls_bitter*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
 #pump set up. This should autopopulate. The phase is a structure for instructions that the pumps expect. 
@@ -151,11 +150,14 @@ win = visual.Window(monSize, fullscr=info['fullscr'],
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
+#Direction text (from Doll, Jacobs, Sanfey Frank (2009))
 scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
-#ImageStim(win, image=None, mask=None, units='', pos=(0.0, 0.0), size=None, ori=0.0, color=(1.0, 1.0, 1.0), colorSpace='rgb', contrast=1.0, opacity=1.0, depth=0, interpolate=False, flipHoriz=False, flipVert=False, texRes=128, name=None, autoLog=None, maskParams=None)
-
-#tastes(pump_phases)
-
+example_images=['a.jpg','b.jpg']
+example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), size=(0.25,0.25),units='height')
+example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
+example_stim1.setImage(example_images[0])#set which image appears
+example_stim2.setImage(example_images[1])#set which image appears
+scan_trigger_text = visual.TextStim(win, text='Two symbols will appear on the screen. One of the symbols is "correct" and one will be "incorrect", but you will not know which is which at first. You will have 2 seconds to press the button to guess which symbol is correct (left or right). If you guess correctly, you will receive a sweet taste. If you guessed incorrectly, you will receive a bitter taste. There is no ABSOLUTE right answer. Try to pick the symbol with the highest CHANCE of being correct', pos=(0, -0.6), height=0.75)
 
 #####################
 ######load in onset files########
