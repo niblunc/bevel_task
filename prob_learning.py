@@ -1,5 +1,6 @@
-# taste task. 2/5/2018
-#this is the reversal learning task for BEVBITS (formerly Juice)
+# taste task. 2/16/2018
+#one new change
+#this is the probabilistic learning task for side piece (a substudy of bevbits, formerly juice)
 #water is pump 0
 #sweet is pump 1
 #notsweet is pump 2
