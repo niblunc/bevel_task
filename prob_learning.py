@@ -52,9 +52,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
