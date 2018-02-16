@@ -5,14 +5,14 @@ library(HH)
 ## ------------------------------------------------------------------------
 ###########REMEMBER TO CHANGE THE PATHS AT THE BOTTOM :D
 ############################################################
-n.loop = 50000
+n.loop = 10
 
 # THINGS TO CHANGE AKA GLOBALS #
-water<-rep(0,16)# 1 for the variable,  16 times
+water<-rep(0,9)# 1 for the variable,  16 times
 sweet<-rep(1,16) #0 for the variable, 16 times
 unsweet<-rep(2,16)
 all<-c(water, sweet, unsweet)
-ntrials.total = 48 #total number of trials
+ntrials.total = 41 #total number of trials
 
 dur = rep(6, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
@@ -121,6 +121,6 @@ mod.fake = lm(fake.data ~ unsweet.best + sweet.best)
 vif(mod.fake)
 
 #MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "/Users/gracer/Documents/bevbit_task/onset_files/pre/onset_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "/Users/gracer/Documents/bevbit_task/onset_files/pre/jitter_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "/Users/gracer/Documents/bevbit_task/onset_files/pre/conds_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,1], "/Users/gracer/Documents/Bev_task/onset_files/pre/onset_run02", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,2], "/Users/gracer/Documents/Bev_task/onset_files/pre/jitter_run02", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,3], "/Users/gracer/Documents/Bev_task/onset_files/pre/conds_run02", row.names = F, col.names = F, sep="\t")
