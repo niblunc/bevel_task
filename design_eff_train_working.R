@@ -8,8 +8,13 @@ library(HH)
 n.loop = 10
 
 # THINGS TO CHANGE AKA GLOBALS #
+<<<<<<< HEAD
 water<-rep(0,9)# 1 for the variable,  16 times
 sweet<-rep(1,16) #0 for the variable, 16 times
+=======
+water<-rep(0,9)#0 for the variable,  16 times
+sweet<-rep(1,16) #1 for the variable, 16 times
+>>>>>>> 7cff4085c8077f0ac06eb3992222f96580a84229
 unsweet<-rep(2,16)
 all<-c(water, sweet, unsweet)
 ntrials.total = 41 #total number of trials
