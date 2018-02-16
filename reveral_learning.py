@@ -1,4 +1,4 @@
-# taste task. 2/5/2018
+# taste task. 2/15/2018
 #this is the reversal learning task for BEVBITS (formerly Juice)
 #water is pump 0
 #sweet is pump 1
@@ -195,6 +195,7 @@ pump=N.zeros(ntrials)
 #set contingency that the sweet is rewarding
 positions = [(0.25,0), (-0.25,0)]
 positions_eng = ['right','left']
+positions_scan=['0','1']
 pos_ind = [0,1]
 
 #this is setting the flip cycler, this allows for the switch when the correct response threshold has been obtained
@@ -297,8 +298,10 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
-        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
-        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
+        mydict[positions_scan[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]],positions_eng[pos_ind[1]]]]
+        mydict[positions_scan[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]],positions_eng[pos_ind[0]]]]
+#        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
+#        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
         print(mydict)
         
         #which is sweet?
@@ -343,21 +346,21 @@ def run_block(initial_cor,correct_response,flip,fix):
             tempArray = [t, keys[0]]
             key_responses.append(tempArray)
             ratings_and_onsets.append(["keypress=%s"%keys[0][0],t])
-            if keys[0][0] == 'left':
+            if keys[0][0] == '1':
                 #from the dictionary find the pump code associated with the key press
-                taste=int(mydict['left'][1])
-                image=(mydict['left'][0])
+                taste=int(mydict['1'][1])
+                image=(mydict['1'][0])
                 #log the pump used, time, and key press
                 print 'injecting via pump at address %s'%taste
-                logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
+                logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0],image))
                 t = clock.getTime()
                 ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
                 #trigger pump with the numeral from the dictonary above 
                 ser.write('%dRUN\r'%taste)    
-            elif keys[0][0] == 'right':
+            elif keys[0][0] == '0':
                 #from the dictonary get the pump associated with the right key press
-                taste=int(mydict['right'][1])
-                image=(mydict['right'][0])
+                taste=int(mydict['0'][1])
+                image=(mydict['0'][0])
                 #log the time, keypress, and pump 
                 print 'injecting via pump at address %s'%taste
                 logging.log(logging.DATA,"injecting via pump at address %d and a keypress of %s and image of %s"%(taste,keys[0][0], image))
