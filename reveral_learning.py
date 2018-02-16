@@ -298,10 +298,8 @@ def run_block(initial_cor,correct_response,flip,fix):
         
         #creating a dictory which will store the postion with the image and pump, the image and pump need to match
         mydict={}
-        mydict[positions_scan[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]],positions_eng[pos_ind[1]]]]
-        mydict[positions_scan[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]],positions_eng[pos_ind[0]]]]
-#        mydict[positions_eng[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]]]
-#        mydict[positions_eng[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]]]
+        mydict[positions_scan[pos_ind[1]]] = [stim_images[indices[1]],pump_responses[indices[1]],positions_eng[pos_ind[1]]]
+        mydict[positions_scan[pos_ind[0]]] = [stim_images[indices[0]],pump_responses[indices[0]],positions_eng[pos_ind[0]]]
         print(mydict)
         
         #which is sweet?
