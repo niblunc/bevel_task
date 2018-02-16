@@ -24,10 +24,9 @@ from itertools import cycle
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.usbserial'
-info['participant'] = 'test'
-info['run']='run02'
-#info['flavor']='SL' #Either CO or SL
+info['port'] = '/dev/tty.'
+info['participant'] = ''
+info['run']='run'
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -85,7 +84,7 @@ diameter=26.59
 mls_sweet=3.0
 mls_bitter=3.0
 mls_rinse=1.0
-delivery_time=4.5
+delivery_time=5.0
 cue_time=2.0
 wait_time=1.0
 rinse_time=2.0
@@ -151,14 +150,14 @@ win = visual.Window(monSize, fullscr=info['fullscr'],
 # STIMS
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
-#Direction text
+#Direction text (from Doll, Jacobs, Sanfey Frank (2009))
 scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
 example_images=['a.jpg','b.jpg']
 example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), size=(0.25,0.25),units='height')
 example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
 example_stim1.setImage(example_images[0])#set which image appears
 example_stim2.setImage(example_images[1])#set which image appears
-scan_trigger_text = visual.TextStim(win, text='You will have 2 seconds to press the button in your hand to indicate which image is sweet (left or right). After the 2 seconds you will get a sweet taste if you were correct, and a bitter taste if you were wrong', pos=(0, -0.6), height=0.75)
+scan_trigger_text = visual.TextStim(win, text='Two symbols will appear on the screen. One of the symbols is "correct" and one will be "incorrect", but you will not know which is which at first. You will have 2 seconds to press the button to guess which symbol is correct (left or right). If you guess correctly, you will receive a sweet taste. If you guessed incorrectly, you will receive a bitter taste. There is no ABSOLUTE right answer. Try to pick the symbol with the highest CHANCE of being correct', pos=(0, -0.6), height=0.75)
 
 #####################
 ######load in onset files########

@@ -5,22 +5,22 @@ library(HH)
 ## ------------------------------------------------------------------------
 ###########REMEMBER TO CHANGE THE PATHS AT THE BOTTOM :D
 ############################################################
-n.loop = 10
+n.loop = 5000
 
 # THINGS TO CHANGE AKA GLOBALS #
-milk<-rep(0,15) #0 for the variable, 20 times
-water<-rep(1,15)# 1 for the variable,  20 times
+milk<-rep(0,20) #0 for the variable, 15 times
+water<-rep(1,20)# 1 for the variable, 15 times
 all<-c(milk, water)
-ntrials.total = 30 #total number of trials
+ntrials.total = 40 #total number of trials
 
-dur = rep(13, ntrials.total)#length of stimulus of interest
+dur = rep(10, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
 min=1
 max=7
 #everything not jitter and not of interest (cue+wait+rinse)
 iti_inital=5
 #iti_hard is all the time in a trial that is not of interest with the longest possible jitter (max)
-iti_hard = rep(max+iti, ntrials.total) #if using a random iti, you need to include this and the onsets into the loop, this is an estimation to get a set up
+iti_hard = rep(max+iti_inital, ntrials.total) #if using a random iti, you need to include this and the onsets into the loop, this is an estimation to get a set up
 ############################################################################
 
 ons.all = cumsum(c(0,dur+iti_hard))
@@ -110,6 +110,6 @@ mod.fake = lm(fake.data ~ water.best + milk.best)
 vif(mod.fake)
 
 #MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "~/Google Drive/efficiency/shake_onsets_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "~/Google Drive/efficiency/shake_jitter_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "~/Google Drive/efficiency/shake_conds_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,1], "~/Documents/bevel_task/efficiency/onsets_run03", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,2], "~/Documents/bevel_task/efficiency/jitter_run03", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,3], "~/Documents/bevel_task/efficiency/conds_run03", row.names = F, col.names = F, sep="\t")
