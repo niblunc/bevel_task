@@ -50,7 +50,7 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/onsets_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/onset_'+info['run']
 subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/jitter_'+info['run']
 subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/onset_files/'+info['session']+'/conds_'+info['run']
 subdata['quit_key']='q'
@@ -78,7 +78,7 @@ time.sleep(1)
 diameter=26.59
 mls_sweet=3.0
 mls_unsweet=3.0
-mls_H2O=3.0
+mls_H2O=1.0
 mls_rinse=1.0
 delivery_time=6.0
 cue_time=1.0
@@ -132,7 +132,7 @@ def check_for_quit(subdata,win):
 def tastes(params):
     for c in params:
         ser.write(c)
-        time.sleep(.05)
+        time.sleep(.0005)
 
 
 # MONITOR
@@ -143,8 +143,6 @@ visual_stim=visual.ImageStim(win, image=N.zeros((300,300)), size=(0.75,0.75),uni
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
 scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos=(0, 0))
-
-tastes(pump_phases)
 
 
 #####################
@@ -213,9 +211,19 @@ def run_block():
     #logging.log(logging.DATA, "start")
     for trial in range(ntrials):
         if check_for_quit(subdata,win):
+            subdata.update(info)
+            f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
+            pickle.dump(subdata,f)
+            f.close()
+
+            myfile = open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
+            wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+            wr.writerow(['event','data'])
+            for row in ratings_and_onsets:
+                wr.writerow(row)
             exptutils.shut_down_cleanly(subdata,win)
             sys.exit()
-        
+        tastes(pump_phases)
         trialdata={}
         trialdata['onset']=onsets[trial]
         visual_stim.setImage(stim_images[trialcond[trial]])#set which image appears
@@ -256,10 +264,11 @@ def run_block():
         trialdata['dis']=[ser.write('0DIS\r'),ser.write('1DIS\r')]
         print(trialdata['dis'])
         tastes(pump_phases2)
-        while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
-            pass
+        
         
         if pump[trial]==0:
+            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
+                pass
             message=visual.TextStim(win, text='NO RINSE', pos=(0, 0), height=2)#lasts through the jitter 
             message.draw()
             win.flip()
@@ -275,6 +284,8 @@ def run_block():
             subdata['trialdata'][trial]=trialdata
             tastes(pump_phases)
         else:
+            while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
+                pass
             message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
             message.draw()
             win.flip()
@@ -300,7 +311,7 @@ def run_block():
             ratings_and_onsets.append(['end time', t])
             logging.log(logging.DATA,"finished")
             subdata['trialdata'][trial]=trialdata
-            tastes(pump_phases)
+            #tastes(pump_phases)
     win.close()
 
 

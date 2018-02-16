@@ -27,7 +27,6 @@ info['fullscr'] = False
 info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
 info['run']='run02'
-info['session']='pre'
 info['flavor']='SL' #Either CO or SL
 info['computer']=(os.getcwd()).split('/')[2]
 
@@ -55,7 +54,7 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 ######################
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onsets_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/onset_'+info['run']
 subdata['jitter']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/jitter_'+info['run']
 subdata['conds']='/Users/'+info['computer']+'/Documents/bevbit_task/rev_onset_files/conds_'+info['run']
 subdata['quit_key']='q'
@@ -200,7 +199,7 @@ pos_ind = [0,1]
 
 #this is setting the flip cycler, this allows for the switch when the correct response threshold has been obtained
 #this is NOT random, make sure the order is how you want
-stim_cycle=cycle([['sweet.jpg','unsweet.jpg'],['unsweet.jpg','sweet.jpg']])
+stim_cycle=cycle([['SL.jpg','USL.jpg'],['USL.jpg','SL.jpg']])
 
 #this index allows us to switch which key press is associated with which side, while maintaing the image to pump pair
 indices=[0,1]

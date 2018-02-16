@@ -9,7 +9,6 @@ n.loop = 10
 
 # THINGS TO CHANGE AKA GLOBALS #
 
-
 water<-rep(0,9)#0 for the variable,  16 times
 sweet<-rep(1,16) #1 for the variable, 16 times
 unsweet<-rep(2,16)
@@ -123,6 +122,6 @@ mod.fake = lm(fake.data ~ unsweet.best + sweet.best)
 vif(mod.fake)
 
 #MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "/Users/gracer/Documents/Bev_task/onset_files/pre/onset_run02", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "/Users/gracer/Documents/Bev_task/onset_files/pre/jitter_run02", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "/Users/gracer/Documents/Bev_task/onset_files/pre/conds_run02", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,1], "/Users/gracer/Documents/bevbit_task/onset_files/pre/onset_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,2], "/Users/gracer/Documents/bevbit_task/onset_files/pre/jitter_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,3], "/Users/gracer/Documents/bevbit_task/onset_files/pre/conds_run01", row.names = F, col.names = F, sep="\t")
