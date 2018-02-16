@@ -52,9 +52,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
@@ -332,7 +332,7 @@ def run_block(fix):
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image, while clock is less than onset and cue, show cue
             pass
         
-        keys = event.getKeys(timeStamped=RT)
+        keys = event.getKeys(keyList=['1','2'],timeStamped=RT)
         message=visual.TextStim(win, text='')#blank screen while the taste is delivered
         message.draw()
         win.flip()
@@ -395,7 +395,7 @@ def run_block(fix):
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time):
             pass
         
-        message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#this lasts throught the wait
+        message=visual.TextStim(win, text='+', pos=(0, 0), height=2) #this lasts throught the wait
         message.draw()
         win.flip()
         t = clock.getTime()
@@ -449,11 +449,11 @@ run_block(fix)
 #subdata['key_responses']=keys_responses
 
 subdata.update(info)
-f=open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/Output/Bevel_subdata_%s.pkl'%datestamp,'wb')
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/'+info['computer']+'/Documents/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/Output/Bevel_subdata_%s.csv'%datestamp.format(**info), 'wb')
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:
