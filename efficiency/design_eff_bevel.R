@@ -5,42 +5,27 @@ library(HH)
 ## ------------------------------------------------------------------------
 ###########REMEMBER TO CHANGE THE PATHS AT THE BOTTOM :D
 ############################################################
-<<<<<<< HEAD
-n.loop = 5000
-
-# THINGS TO CHANGE AKA GLOBALS #
-milk<-rep(0,20) #0 for the variable, 15 times
-water<-rep(1,20)# 1 for the variable, 15 times
-all<-c(milk, water)
-ntrials.total = 40 #total number of trials
-
-<<<<<<< HEAD
-dur = rep(9, ntrials.total)#length of stimulus of interest
-=======
-dur = rep(10, ntrials.total)#length of stimulus of interest
->>>>>>> 0074eaf10b2fe3fb95809e9f8dc69bbf0230046e
-#min and max jitter values possible
-min=1
-max=7
-#everything not jitter and not of interest (cue+wait+rinse)
-iti_inital=5
-=======
 n.loop = 10
 
 # THINGS TO CHANGE AKA GLOBALS #
+delivery_time=5.0
+cue_time=2.0
+wait_time=1.0
+rinse_time=2.0
 
-water<-rep(0,9)#0 for the variable,  16 times
-sweet<-rep(1,16) #1 for the variable, 16 times
-unsweet<-rep(2,16)
+iti_inital=cue_time+wait_time+rinse_time
+
+water<-rep(0,20)#0 for the variable,  16 times
+sweet<-rep(1,19) #1 for the variable, 16 times
+unsweet<-rep(2,1)
 all<-c(water, sweet, unsweet)
-ntrials.total = 41 #total number of trials
+ntrials.total = 40 #total number of trials
 
-dur = rep(6, ntrials.total)#length of stimulus of interest
+dur = rep(5, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
 min=3
-max=11
-iti_inital=6 #everything not jitter and not of interest (cue+wait+rinse)
->>>>>>> b78b5a288408657337d2cee690a690d2589d2b58
+max=7
+
 #iti_hard is all the time in a trial that is not of interest with the longest possible jitter (max)
 iti_hard = rep(max+iti_inital, ntrials.total) #if using a random iti, you need to include this and the onsets into the loop, this is an estimation to get a set up
 ############################################################################
@@ -52,13 +37,9 @@ tr = 1
 eff.size = 1
 # Things I'd like to save
 eff.val = rep(0, n.loop) #efficiency
-<<<<<<< HEAD
-desmats = array(0,c(run.length, 3,  n.loop)) #all the model data will get entered here, this is a 3x3x3 matrix of 0s length of the longest possible run time
-=======
 #has to have the middle number the same as the matrix so number of stimuli + 1
 desmats = array(0,c(run.length, 4,  n.loop)) #all the model data will get entered here, this is a 3x3x3 matrix of 0s length of the longest possible run time
 #don't changes
->>>>>>> b78b5a288408657337d2cee690a690d2589d2b58
 ons.save = array(0,c(length(ons.all),3, n.loop)) #the onsets will go here, this is a blank 3x3x3 matrix length of the onsets
 
 Sys.time()->start;
@@ -85,18 +66,6 @@ for (i in 1:n.loop){
   
   
   #taking the onsets and making them simulated activation
-<<<<<<< HEAD
-  water = specifydesign(ons.all[trial.type == 1], dur[trial.type == 1],
-                       run.length, tr,
-                       eff.size, conv = "double-gamma")
-  milk = specifydesign(ons.all[trial.type == 0], dur[trial.type == 0],
-                        run.length, tr,
-                        eff.size, conv = "double-gamma")
-  #save the simulated activation in a array (TRxContrast)
-  des.mat = cbind(rep(1, length(milk)), milk, water)
-  # making the contrast this is milk>water
-  con = c(0, 1, -1) 
-=======
   water = specifydesign(ons.all[trial.type == 0], dur[trial.type == 0],
                        run.length, tr,
                        eff.size, conv = "double-gamma")
@@ -111,7 +80,6 @@ for (i in 1:n.loop){
   des.mat = cbind(rep(1, length(sweet)), water,sweet,unsweet)
   # making the contrast this is sweet>unsweet
   con = c(0, 0, 1, -1) 
->>>>>>> b78b5a288408657337d2cee690a690d2589d2b58
   #solving for the efficiency matrix
   eff.val[i] = 1/(t(con)%*%solve(t(des.mat)%*%des.mat)%*%con)
   ons.save[,,i]=c(ons.all,jit,trial.type)
@@ -123,24 +91,6 @@ print(Sys.time()-start)
 # Plot design matrices with best and worst efficiencies
 par(mfrow = c(2, 1), mar = c(4, 3, 2, 1))
 # finding the most eff matrix to plot all of the columns simulated activation for each TR
-<<<<<<< HEAD
-milk.best = desmats[,2,which(eff.val == max(eff.val))]
-water.best = desmats[,3,which(eff.val == max(eff.val))]
-
-plot(milk.best, type = 'l', lwd = 2, col = 'red', xlab = "TR", 
-     ylab = '', ylim = c(min(c(milk.best, water.best)), 1.3),
-     main = "Highest Efficiency")
-lines(water.best, lwd = 2, col = 'cyan')
-
-milk.worst = desmats[,2,which(eff.val == min(eff.val), arr.ind = TRUE)]
-water.worst = desmats[,3,which(eff.val == min(eff.val))]
-
-plot(milk.worst, type = 'l', lwd = 2, col = 'red', xlab = "TR", 
-     ylab = '', ylim = c(min(c(milk.worst, water.worst)), 1.3),
-     main = "Lowest Efficiency")
-lines(water.worst, lwd = 2, col = 'cyan')
-legend('topleft', c("water 1",  "milk 0"), col = c("cyan", "red"), lwd = c(2,1), bty = 'n')
-=======
 water.best = desmats[,2,which(eff.val == max(eff.val))]
 sweet.best = desmats[,3,which(eff.val == max(eff.val))]
 unsweet.best = desmats[,4,which(eff.val == max(eff.val))]
@@ -162,7 +112,6 @@ lines(water.worst, lwd = 2, col = 'cyan')
 lines(unsweet.worst, lwd = 2, col = 'black')
 
 legend('topleft', c("water 0",  "sweet 1", "unsweet 2"), col = c("cyan", "red", "black"), lwd = c(2,1), bty = 'n')
->>>>>>> b78b5a288408657337d2cee690a690d2589d2b58
 
 #desmats TRxcontrast_activationxloops
 #there are n.loops of matrices, with timepoint rows and contrast columns
@@ -174,22 +123,11 @@ best = tail(ord.eff, 1)
 ons.save[,,best]
 
 #VIF check that your fake regressors aren't correlated
-<<<<<<< HEAD
-fake.data = rnorm(length(milk))
-mod.fake = lm(fake.data ~ water.best + milk.best)
-vif(mod.fake)
-
-#MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "~/Documents/bevel_task/efficiency/onsets_run03", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "~/Documents/bevel_task/efficiency/jitter_run03", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "~/Documents/bevel_task/efficiency/conds_run03", row.names = F, col.names = F, sep="\t")
-=======
 fake.data = rnorm(length(sweet))
 mod.fake = lm(fake.data ~ unsweet.best + sweet.best)
 vif(mod.fake)
 
 #MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "/Users/gracer/Documents/bevbit_task/onset_files/pre/onset_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "/Users/gracer/Documents/bevbit_task/onset_files/pre/jitter_run01", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "/Users/gracer/Documents/bevbit_task/onset_files/pre/conds_run01", row.names = F, col.names = F, sep="\t")
->>>>>>> b78b5a288408657337d2cee690a690d2589d2b58
+write.table(ons.save[,,best][,1], "/Users/nibl/Documents/bevel_task/efficiency/onset_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,2], "/Users/nibl/Documents/bevel_task/efficiency/jitter_run01", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,3], "/Users/nibl/Documents/bevel_task/efficiency/conds_run01", row.names = F, col.names = F, sep="\t")

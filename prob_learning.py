@@ -94,6 +94,7 @@ fix=int(2)
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
+print(rate_sweet)
 rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
@@ -141,7 +142,7 @@ def tastes(params):
         ser.write(c)
         time.sleep(.05)
 
-
+tastes(pump_phases)
 # MONITOR set up
 # set the window size as win 
 win = visual.Window(monSize, fullscr=info['fullscr'],
@@ -246,6 +247,7 @@ def run_block(fix):
     ratings_and_onsets.append(['fixation',t])
     logging.log(logging.DATA, "fixation %f"%t)
     show_stim(fixation_text, fix)  # 8 sec blank screen with fixation cross
+    
     #log fixation
     logging.log(logging.DATA, "fixation end %f"%t)
     t = clock.getTime()
@@ -255,8 +257,6 @@ def run_block(fix):
     ratings_and_onsets.append(['start',t])
     logging.log(logging.DATA, "START")
     
-    #initalize starting variables in the loop
-    #stim_images=stim_cycle.next()
     
     #start the taste loop
     for trial in range(ntrials):
@@ -267,17 +267,6 @@ def run_block(fix):
         #empty trial data 
         trialdata={}
         trialdata['onset']=onsets[trial]
-        
-        
-
-        #check for correct responses##
-#        if len(correct_response)>initial_cor:
-#            stim_images=stim_cycle.next()
-#            logging.log(logging.DATA, 'FLIP %s %s'%(stim_images[0],stim_images[1]))
-#            initial_cor=random.randint(3,5)
-#            flip.append(initial_cor)
-#            logging.log(logging.DATA, 'New flip %i'%(initial_cor))
-#            correct_response=[]
         
         
         
@@ -322,7 +311,7 @@ def run_block(fix):
         
         #this is logging when the message is shown
         logging.log(logging.DATA, "%s at position=%s and %s at position=%s"%(stim_images[indices[0]],positions_eng[pos_ind[0]],stim_images[indices[1]],positions_eng[pos_ind[1]]))
-        
+        logging.flush()
         
         while clock.getTime()<trialdata['onset']:
             pass
@@ -346,6 +335,8 @@ def run_block(fix):
             print("here are the keys:")
             print(keys)
             t = clock.getTime()
+            logging.flush()
+            
             #back up of the key press
             tempArray = [t, keys[0]]
             key_responses.append(tempArray)
@@ -368,7 +359,8 @@ def run_block(fix):
                 t = clock.getTime()
                 ratings_and_onsets.append(["injecting via pump at address %d"%taste, t, keys[0][0]])
                 #trigger pump with the numeral from the dictonary above 
-                ser.write('%dRUN\r'%taste)    
+                ser.write('%dRUN\r'%taste)
+                logging.flush()
             elif keys[0][0] == '2':
                 #from the dictonary get the image associated with the right key press
                 image=(mydict['2'][0])
@@ -383,11 +375,13 @@ def run_block(fix):
                 ratings_and_onsets.append(["injecting via pump at address %d"%taste, t])
                 #trigger the pump with the numeral from the dictionary
                 ser.write('%dRUN\r'%taste)
+                logging.flush()
         else:
             taste=0
             t = clock.getTime()
             logging.log(logging.DATA,"Key Press Missed!")
             keys=keys.append(['MISS',t])
+            logging.flush()
             message=visual.TextStim(win, text='Please answer quicker', pos=(0, 0), height=2)#this lasts throught the taste
             message.draw()
             win.flip()
@@ -418,6 +412,8 @@ def run_block(fix):
         t = clock.getTime()
         ratings_and_onsets.append(['injecting rinse via pump at address %d'%0, t])
         ser.write('%dRUN\r'%0)
+        logging.log(logging.DATA, "RINSE")
+        logging.flush()
         
       
         
@@ -436,6 +432,7 @@ def run_block(fix):
         t = clock.getTime()
         ratings_and_onsets.append(['end time', t])
         logging.log(logging.DATA,"finished")
+        logging.flush()
         subdata['trialdata'][trial]=trialdata
         
       
