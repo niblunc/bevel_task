@@ -5,7 +5,7 @@ library(HH)
 ## ------------------------------------------------------------------------
 ###########REMEMBER TO CHANGE THE PATHS AT THE BOTTOM :D
 ############################################################
-n.loop = 50000
+n.loop = 5000
 
 # THINGS TO CHANGE AKA GLOBALS #
 delivery_time=5.0
@@ -15,11 +15,11 @@ rinse_time=2.0
 
 iti_inital=cue_time+wait_time+rinse_time
 
-water<-rep(0,11)#0 for the variable,  16 times
-sweet<-rep(1,11) #1 for the variable, 16 times
-unsweet<-rep(2,11)
+water<-rep(0,12)#0 for the variable,  16 times
+sweet<-rep(1,12) #1 for the variable, 16 times
+unsweet<-rep(2,12)
 all<-c(water, sweet, unsweet)
-ntrials.total = 33 #total number of trials
+ntrials.total = 36 #total number of trials
 
 dur = rep(5, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
