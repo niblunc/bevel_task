@@ -83,7 +83,7 @@ time.sleep(1)
 #global settings aka Input parameters, make sure these match with the effciciency calculation
 diameter=26.59
 mls_sweet=3.0
-mls_bitter=3.0
+mls_unsweet=3.0
 mls_rinse=1.0
 delivery_time=5.0
 cue_time=2.0
@@ -94,7 +94,7 @@ fix=int(2)
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
 rate_sweet = mls_sweet*(3600.0/delivery_time)  # mls/hour 300
-rate_unsweet = mls_bitter*(3600.0/delivery_time)  # mls/hour 300
+rate_unsweet = mls_unsweet*(3600.0/delivery_time)  # mls/hour 300
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
 #pump set up. This should autopopulate. The phase is a structure for instructions that the pumps expect. 
