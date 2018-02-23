@@ -21,11 +21,11 @@ import random
 from random import shuffle
 from itertools import cycle
 #import pdb
-
+#1
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.'
+info['port'] = '/dev/tty.12'
 info['participant'] = ''
 info['run']='run'
 info['computer']=(os.getcwd()).split('/')[2]
@@ -89,7 +89,7 @@ delivery_time=5.0
 cue_time=2.0
 wait_time=1.0
 rinse_time=2.0
-fix=int(2)
+fix=int(8)
 
 #pump set up. This sets the rate from the mls sweet and the delivery time. Does so automatically
 str='\r'
@@ -159,7 +159,7 @@ example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), si
 example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
 example_stim1.setImage(example_images[0])#set which image appears
 example_stim2.setImage(example_images[1])#set which image appears
-scan_trigger_text = visual.TextStim(win, text='Two symbols will appear on the screen. One of the symbols is "correct" and one will be "incorrect", but you will not know which is which at first. You will have 2 seconds to press the button to guess which symbol is correct (left or right). If you guess correctly, you will receive a sweet taste. If you guessed incorrectly, you will receive a bitter taste. There is no ABSOLUTE right answer. Try to pick the symbol with the highest CHANCE of being correct', pos=(0, -0.6), height=0.75)
+scan_trigger_text = visual.TextStim(win, text='Two symbols will appear on the screen. One of the symbols is "correct" and one will be "incorrect", but it will not always be the same. You will have 2 seconds to press the button to guess which symbol is correct (left or right). If you guess correctly, you will receive a sweet taste. If you guessed incorrectly, you will receive a bitter taste. There is no ABSOLUTE right answer. Try to pick the symbol with the highest CHANCE of being correct', pos=(0, -0.6), height=0.75)
 
 #####################
 ######load in onset files########
@@ -299,7 +299,7 @@ def run_block(fix):
         print(mydict)
         
         #which is sweet?
-        message=visual.TextStim(win, text='Which is Sweet?',pos=(0,5))
+        message=visual.TextStim(win, text='Which is Correct?',pos=(0,5))
         print trial
         t = clock.getTime()
         
@@ -404,7 +404,7 @@ def run_block(fix):
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
        
-        message=visual.TextStim(win, text='RINSE', pos=(0, 0), height=2)#this lasts throught the rinse 
+        message=visual.TextStim(win, text=' 1', pos=(0, 0), height=2)#this lasts throught the rinse 
         message.draw()
         win.flip()
                 
