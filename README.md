@@ -3,10 +3,12 @@
 PsychoPy probabilistic reward learning task with taste adminstration as reinforcement
 
 Task Length: 
-Run01 = 36 events, 543 seconds
-Run02 = 36 events, 539 seconds
-Run03 = 36 events, 541 seconds
+Run01 = 26 events, 379 seconds
+Run02 = 26 events, 394 seconds
+Run03 = 26 events, 388 seconds
+Run04 = 26 events, 397 seconds
+
 
 Run time (per run) 
-273 measurements = 546 seconds (9 min, 6 seconds)
+199 measurements = 398 seconds (6 min, 38 seconds)
 

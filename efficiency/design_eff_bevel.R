@@ -15,11 +15,11 @@ rinse_time=2.0
 
 iti_inital=cue_time+wait_time+rinse_time
 
-water<-rep(0,12)#0 for the variable,  16 times
-sweet<-rep(1,12) #1 for the variable, 16 times
-unsweet<-rep(2,12)
+water<-rep(0,9)#0 for the variable,  16 times
+sweet<-rep(1,9) #1 for the variable, 16 times
+unsweet<-rep(2,8)
 all<-c(water, sweet, unsweet)
-ntrials.total = 36 #total number of trials
+ntrials.total = 26 #total number of trials
 
 dur = rep(5, ntrials.total)#length of stimulus of interest
 #min and max jitter values possible
@@ -128,6 +128,6 @@ mod.fake = lm(fake.data ~ unsweet.best + sweet.best)
 vif(mod.fake)
 
 #MAKE files##################CHANGE THESE TO A PATH YOU LIKE
-write.table(ons.save[,,best][,1], "/Users/nibl/Documents/bevel_task/efficiency/onset_run03", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,2], "/Users/nibl/Documents/bevel_task/efficiency/jitter_run03", row.names = F, col.names = F, sep="\t")
-write.table(ons.save[,,best][,3], "/Users/nibl/Documents/bevel_task/efficiency/conds_run03", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,1], "/Users/jennygilbert/Documents/bevel_task/efficiency/onset_run04", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,2], "/Users/jennygilbert/Documents/bevel_task/efficiency/jitter_run04", row.names = F, col.names = F, sep="\t")
+write.table(ons.save[,,best][,3], "/Users/jennygilbert/Documents/bevel_task/efficiency/conds_run04", row.names = F, col.names = F, sep="\t")
