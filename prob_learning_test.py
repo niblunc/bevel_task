@@ -325,11 +325,11 @@ run_block(fix)
 #subdata['key_responses']=keys_responses
 
 subdata.update(info)
-f=open('/Users/'+info['computer']+'/Documents/bevel_task/Output/BBX_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/bevel_task/Output/Bevel_test_subdata_%s.pkl'%datestamp,'wb')
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/'+info['computer']+'/Documents/bevel_task/Output/BBX_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/bevel_task/Output/Bevel_test_subdata_%s.csv'%datestamp.format(**info), 'wb')
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:
