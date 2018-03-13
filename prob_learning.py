@@ -25,7 +25,7 @@ from itertools import cycle
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.12'
+info['port'] = '/dev/tty.usbserial'
 info['participant'] = ''
 info['run']='run'
 info['computer']=(os.getcwd()).split('/')[2]
@@ -59,7 +59,7 @@ subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/efficiency/co
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/Output/bevel_%s_%s_%s_subdata.log'%(info['participant'],subdata['datestamp'],subdata['run'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -404,7 +404,7 @@ def run_block(fix):
         while clock.getTime()<(trialdata['onset']+cue_time+delivery_time+wait_time):
             pass
        
-        message=visual.TextStim(win, text=' 1', pos=(0, 0), height=2)#this lasts throught the rinse 
+        message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#this lasts throught the rinse 
         message.draw()
         win.flip()
                 

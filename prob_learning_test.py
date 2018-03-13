@@ -22,10 +22,7 @@ from itertools import cycle
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-#info['port'] = '/dev/tty.usbserial'
-info['participant'] = 'test'
-#info['run']='run02'
-#info['flavor']='SL' #Either CO or SL
+info['participant'] = ''
 info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -52,12 +49,11 @@ subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
 subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/onsets'
-#subdata['jitter']='/Users/'+info['computer']+'/Documents/bevel_task/rev_onset_files/jitter_'+info['run']
 subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/conds'
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/bevel_task/Output/%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/bevel_task/Output/testing_%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -79,14 +75,9 @@ flip=[]
 time.sleep(1)
 
 #global settings aka Input parameters, make sure these match with the effciciency calculation
-#diameter=26.59
-#mls_sweet=3.0
-#mls_unsweet=3.0
-#mls_rinse=1.0
 delivery_time=0.5
 cue_time=2.0
 wait_time=1.0
-#rinse_time=3.0
 fix=int(2)
 
 # HELPER FUNCTIONS. These are pulled from Russ. We don't change these usually. 
@@ -128,7 +119,13 @@ win = visual.Window(monSize, fullscr=info['fullscr'],
 fixation_text = visual.TextStim(win, text='+', pos=(0, 0), height=2)
 
 scan_trigger_text = visual.TextStim(win, text='Waiting for task to begin', pos=(0, 0))
-#ImageStim(win, image=None, mask=None, units='', pos=(0.0, 0.0), size=None, ori=0.0, color=(1.0, 1.0, 1.0), colorSpace='rgb', contrast=1.0, opacity=1.0, depth=0, interpolate=False, flipHoriz=False, flipVert=False, texRes=128, name=None, autoLog=None, maskParams=None)
+#Direction text (from Doll, Jacobs, Sanfey Frank (2009))
+example_images=['a.jpg','b.jpg']
+example_stim1=visual.ImageStim(win, image=N.zeros((300,300)),pos=(0.25,0.25), size=(0.25,0.25),units='height')
+example_stim2=visual.ImageStim(win, image=N.zeros((300,300)),pos=(-0.25,0.25), size=(0.25,0.25),units='height')
+example_stim1.setImage(example_images[0])#set which image appears
+example_stim2.setImage(example_images[1])#set which image appears
+scan_trigger_text = visual.TextStim(win, text='In this part, we will test what you learning from the MRI task. Two symbols will appear on the screen. Use the arrow keys to indicate which symbol is "correct". You will have 2 seconds to choose (left or right arrow key). You will not receive any feedback. Remember, try to pick the symbol with the highest CHANCE of being correct', pos=(0, -0.6), height=0.75)
 
 #tastes(pump_phases)
 
