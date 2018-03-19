@@ -53,7 +53,7 @@ subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_fi
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/bevel_task/Output/testing_%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/bevel_task/Output/beveltest_%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
