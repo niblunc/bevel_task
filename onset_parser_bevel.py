@@ -14,7 +14,7 @@ import glob
 
 handles=[]
 
-basepath='/Users/nibl/Documents/Output'
+basepath='/Users/jennygilbert/Documents/niblunc/bevel_task/Output/logs'
 os.chdir(basepath)
 
 
@@ -27,8 +27,8 @@ ignore = ['DATA 	Keypress: o','Level post injecting via pump at address']
 for file in glob.glob(os.path.join(basepath,'bevel*.log')):
     print(file)
 
-    sub=file.split('/')[4].split('_')[1]
-    run=file.split('/')[4].split('_')[2]
+    sub=file.split('/')[8].split('_')[1]
+    run=file.split('/')[8].split('_')[2]
     print([sub,run])
     
 #   open the script and read in log data
@@ -132,7 +132,7 @@ for file in glob.glob(os.path.join(basepath,'bevel*.log')):
         mydict={}
         try:
             for files in files2make:
-                path='/Users/nibl/Documents/bevel_task/Output/onsets/%s_%s_%s.txt'%(sub,files,run)
+                path='/Users/jennygilbert/Documents/niblunc/bevel_task/Output/onsets_fsl/%s_%s_%s.txt'%(sub,files,run)
                 if os.path.exists(path) == True:
                     print ('exists')
                     break

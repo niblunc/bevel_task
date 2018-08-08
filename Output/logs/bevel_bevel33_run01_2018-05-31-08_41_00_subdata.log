@@ -1,0 +1,154 @@
+188.9418 	DATA 	Keypress: o
+188.9425 	Level start key press 	25
+188.9425 	Level fixation 0.000001 	25
+190.9447 	DATA 	Keypress: o
+192.9448 	DATA 	Keypress: o
+194.9450 	DATA 	Keypress: o
+196.9450 	DATA 	Keypress: o
+197.3928 	Level fixation end 0.000001 	25
+197.3928 	Level START 	25
+197.7951 	Level d.jpg at position=left and c.jpg at position=right 	25
+199.3939 	DATA 	Keypress: o
+199.4100 	Level Key Press Missed! 	25
+204.3982 	DATA 	Keypress: 1
+204.3995 	DATA 	Keypress: o
+204.4006 	DATA 	Keypress: 1
+204.4015 	DATA 	Keypress: 1
+204.4028 	DATA 	Keypress: o
+205.3966 	DATA 	Keypress: 1
+205.3979 	DATA 	Keypress: o
+205.4099 	Level RINSE 	25
+207.3977 	DATA 	Keypress: o
+212.3928 	Level finished 	25
+212.3942 	DATA 	Keypress: o
+212.3953 	DATA 	Keypress: o
+212.7680 	Level c.jpg at position=left and d.jpg at position=right 	25
+214.3940 	DATA 	Keypress: o
+214.4273 	Level Key Press Missed! 	25
+219.3979 	DATA 	Keypress: o
+219.3991 	DATA 	Keypress: 1
+219.4002 	DATA 	Keypress: o
+219.4015 	DATA 	Keypress: 1
+219.4023 	DATA 	Keypress: o
+220.4112 	Level RINSE 	25
+222.3985 	DATA 	Keypress: o
+228.3928 	Level finished 	25
+228.3941 	DATA 	Keypress: o
+228.3953 	DATA 	Keypress: o
+228.3965 	DATA 	Keypress: o
+228.7974 	Level f.jpg at position=left and e.jpg at position=right 	25
+230.3940 	DATA 	Keypress: o
+230.4117 	Level Key Press Missed! 	25
+235.3980 	DATA 	Keypress: o
+235.3990 	DATA 	Keypress: 1
+235.4000 	DATA 	Keypress: o
+235.4009 	DATA 	Keypress: o
+236.4123 	Level RINSE 	25
+238.3978 	DATA 	Keypress: o
+242.3928 	Level finished 	25
+242.3941 	DATA 	Keypress: o
+242.3951 	DATA 	Keypress: o
+242.7800 	Level b.jpg at position=right and a.jpg at position=left 	25
+244.3939 	DATA 	Keypress: o
+244.4127 	Level Key Press Missed! 	25
+249.3980 	DATA 	Keypress: o
+249.3991 	DATA 	Keypress: 2
+249.4001 	DATA 	Keypress: o
+249.4014 	DATA 	Keypress: o
+250.4133 	Level RINSE 	25
+252.3976 	DATA 	Keypress: o
+255.3928 	Level finished 	25
+255.3941 	DATA 	Keypress: o
+255.3953 	DATA 	Keypress: o
+255.7800 	Level f.jpg at position=right and e.jpg at position=left 	25
+257.3939 	DATA 	Keypress: o
+257.4136 	Level Key Press Missed! 	25
+262.3983 	DATA 	Keypress: o
+262.3995 	DATA 	Keypress: 2
+262.4007 	DATA 	Keypress: o
+263.3955 	DATA 	Keypress: o
+263.4142 	Level RINSE 	25
+265.3983 	DATA 	Keypress: o
+270.3928 	Level finished 	25
+270.3941 	DATA 	Keypress: o
+270.3953 	DATA 	Keypress: o
+270.7697 	Level e.jpg at position=right and f.jpg at position=left 	25
+272.3939 	DATA 	Keypress: o
+272.4146 	Level Key Press Missed! 	25
+277.3975 	DATA 	Keypress: o
+277.3984 	DATA 	Keypress: o
+277.3993 	DATA 	Keypress: 2
+277.4002 	DATA 	Keypress: o
+278.4152 	Level RINSE 	25
+280.3986 	DATA 	Keypress: o
+284.3928 	Level finished 	25
+284.3942 	DATA 	Keypress: o
+284.3954 	DATA 	Keypress: o
+284.7808 	Level c.jpg at position=left and d.jpg at position=right 	25
+286.3940 	DATA 	Keypress: o
+286.4156 	Level Key Press Missed! 	25
+291.3982 	DATA 	Keypress: o
+291.3994 	DATA 	Keypress: o
+291.4004 	DATA 	Keypress: 1
+291.4013 	DATA 	Keypress: o
+292.4162 	Level RINSE 	25
+294.3978 	DATA 	Keypress: o
+297.3928 	Level finished 	25
+297.3942 	DATA 	Keypress: o
+297.3954 	DATA 	Keypress: o
+297.7718 	Level a.jpg at position=right and b.jpg at position=left 	25
+299.3941 	DATA 	Keypress: o
+299.3999 	Level Key Press Missed! 	25
+304.3979 	DATA 	Keypress: o
+304.3988 	DATA 	Keypress: 1
+304.3997 	DATA 	Keypress: o
+305.3954 	DATA 	Keypress: 1
+305.3967 	DATA 	Keypress: o
+305.4004 	Level RINSE 	25
+307.3987 	DATA 	Keypress: o
+312.3928 	Level finished 	25
+312.3942 	DATA 	Keypress: o
+312.3953 	DATA 	Keypress: o
+312.7766 	Level f.jpg at position=right and e.jpg at position=left 	25
+314.3940 	DATA 	Keypress: o
+314.4176 	Level Key Press Missed! 	25
+319.3978 	DATA 	Keypress: o
+319.3990 	DATA 	Keypress: o
+319.4002 	DATA 	Keypress: 2
+319.4014 	DATA 	Keypress: q
+319.4026 	DATA 	Keypress: q
+319.4037 	DATA 	Keypress: q
+319.4049 	DATA 	Keypress: q
+319.4061 	DATA 	Keypress: q
+319.4073 	DATA 	Keypress: q
+319.4083 	DATA 	Keypress: q
+319.4092 	DATA 	Keypress: q
+320.3954 	DATA 	Keypress: q
+320.3965 	DATA 	Keypress: q
+320.3975 	DATA 	Keypress: q
+320.3983 	DATA 	Keypress: q
+320.3993 	DATA 	Keypress: q
+320.4181 	Level RINSE 	25
+322.3982 	DATA 	Keypress: q
+322.3994 	DATA 	Keypress: q
+322.4003 	DATA 	Keypress: q
+322.4013 	DATA 	Keypress: q
+322.4022 	DATA 	Keypress: q
+322.4031 	DATA 	Keypress: q
+322.4041 	DATA 	Keypress: q
+322.4050 	DATA 	Keypress: q
+322.4059 	DATA 	Keypress: q
+322.4069 	DATA 	Keypress: q
+325.3928 	Level finished 	25
+325.3950 	DATA 	Keypress: q
+325.3961 	DATA 	Keypress: q
+325.3971 	DATA 	Keypress: q
+325.3980 	DATA 	Keypress: q
+325.3990 	DATA 	Keypress: q
+325.3999 	DATA 	Keypress: q
+325.4008 	DATA 	Keypress: q
+325.4018 	DATA 	Keypress: q
+325.4027 	DATA 	Keypress: q
+325.4036 	DATA 	Keypress: q
+325.4045 	DATA 	Keypress: q
+325.4055 	DATA 	Keypress: q
