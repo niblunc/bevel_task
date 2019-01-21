@@ -1,0 +1,360 @@
+85.9723 	DATA 	Keypress: o
+85.9732 	Level start key press 	25
+85.9733 	Level fixation 0.000001 	25
+87.9792 	DATA 	Keypress: o
+89.9798 	DATA 	Keypress: o
+91.9798 	DATA 	Keypress: o
+93.9798 	DATA 	Keypress: o
+94.4443 	Level fixation end 0.000001 	25
+94.4444 	Level START 	25
+94.8425 	Level a.jpg at position=right and b.jpg at position=left 	25
+96.4457 	DATA 	Keypress: 1
+96.4469 	DATA 	Keypress: o
+96.4783 	Level keypress=1 at time= 1.584658 	25
+96.4788 	Level injecting via pump at address 1 and a keypress of 1 and image of b.jpg 	25
+101.4515 	DATA 	Keypress: o
+101.4527 	DATA 	Keypress: o
+102.4477 	DATA 	Keypress: o
+102.4787 	Level RINSE 	25
+104.4510 	DATA 	Keypress: o
+110.4444 	Level finished 	25
+110.4462 	DATA 	Keypress: o
+110.4480 	DATA 	Keypress: o
+110.4497 	DATA 	Keypress: o
+110.8430 	Level b.jpg at position=right and a.jpg at position=left 	25
+112.4461 	DATA 	Keypress: 1
+112.4479 	DATA 	Keypress: o
+112.4496 	DATA 	Keypress: 1
+112.4797 	Level keypress=1 at time= 1.582887 	25
+112.4802 	Level injecting via pump at address 1 and a keypress of 1 and image of a.jpg 	25
+117.4502 	DATA 	Keypress: o
+117.4514 	DATA 	Keypress: o
+118.4468 	DATA 	Keypress: o
+118.4640 	Level RINSE 	25
+120.4494 	DATA 	Keypress: o
+125.4444 	Level finished 	25
+125.4458 	DATA 	Keypress: o
+125.4469 	DATA 	Keypress: o
+125.8272 	Level f.jpg at position=left and e.jpg at position=right 	25
+127.4455 	DATA 	Keypress: o
+127.4465 	DATA 	Keypress: 1
+127.4649 	Level keypress=1 at time= 1.598329 	25
+127.4654 	Level injecting via pump at address 2 and a keypress of 1 and image of f.jpg 	25
+132.4496 	DATA 	Keypress: o
+132.4507 	DATA 	Keypress: o
+132.4518 	DATA 	Keypress: o
+133.4658 	Level RINSE 	25
+135.4500 	DATA 	Keypress: o
+139.4444 	Level finished 	25
+139.4459 	DATA 	Keypress: o
+139.4471 	DATA 	Keypress: o
+139.8333 	Level a.jpg at position=left and b.jpg at position=right 	25
+141.4455 	DATA 	Keypress: o
+141.4466 	DATA 	Keypress: 1
+141.4665 	Level keypress=1 at time= 1.580268 	25
+141.4670 	Level injecting via pump at address 1 and a keypress of 1 and image of a.jpg 	25
+146.4496 	DATA 	Keypress: o
+146.4506 	DATA 	Keypress: o
+146.4516 	DATA 	Keypress: o
+147.4507 	Level RINSE 	25
+149.4489 	DATA 	Keypress: o
+153.4444 	Level finished 	25
+153.4462 	DATA 	Keypress: o
+153.4477 	DATA 	Keypress: o
+153.8381 	Level e.jpg at position=right and f.jpg at position=left 	25
+155.4460 	DATA 	Keypress: o
+155.4477 	DATA 	Keypress: 2
+155.4682 	Level keypress=2 at time= 1.596488 	25
+155.4687 	Level injecting via pump at address 1 and a keypress of 2 and image of e.jpg 	25
+160.4495 	DATA 	Keypress: o
+160.4506 	DATA 	Keypress: o
+160.4516 	DATA 	Keypress: o
+161.4691 	Level RINSE 	25
+163.4494 	DATA 	Keypress: o
+168.4444 	Level finished 	25
+168.4458 	DATA 	Keypress: o
+168.4470 	DATA 	Keypress: o
+168.4481 	DATA 	Keypress: o
+168.8226 	Level a.jpg at position=right and b.jpg at position=left 	25
+170.4455 	DATA 	Keypress: 1
+170.4465 	DATA 	Keypress: o
+170.4703 	Level keypress=1 at time= 1.609126 	25
+170.4707 	Level injecting via pump at address 2 and a keypress of 1 and image of b.jpg 	25
+175.4514 	DATA 	Keypress: o
+175.4530 	DATA 	Keypress: o
+176.4470 	DATA 	Keypress: o
+176.4709 	Level RINSE 	25
+178.4497 	DATA 	Keypress: o
+184.4444 	Level finished 	25
+184.4464 	DATA 	Keypress: o
+184.4482 	DATA 	Keypress: o
+184.4499 	DATA 	Keypress: o
+184.8269 	Level d.jpg at position=left and c.jpg at position=right 	25
+186.4455 	DATA 	Keypress: 1
+186.4466 	DATA 	Keypress: o
+186.4478 	DATA 	Keypress: 1
+186.4718 	Level keypress=1 at time= 1.590044 	25
+186.4724 	Level injecting via pump at address 2 and a keypress of 1 and image of d.jpg 	25
+191.4494 	DATA 	Keypress: o
+191.4506 	DATA 	Keypress: o
+192.4474 	DATA 	Keypress: o
+192.4727 	Level RINSE 	25
+194.4522 	DATA 	Keypress: o
+198.4444 	Level finished 	25
+198.4461 	DATA 	Keypress: o
+198.4475 	DATA 	Keypress: o
+198.8338 	Level a.jpg at position=right and b.jpg at position=left 	25
+200.4455 	DATA 	Keypress: 2
+200.4465 	DATA 	Keypress: o
+200.4568 	Level keypress=2 at time= 1.588779 	25
+200.4572 	Level injecting via pump at address 1 and a keypress of 2 and image of a.jpg 	25
+205.4508 	DATA 	Keypress: o
+205.4524 	DATA 	Keypress: o
+206.4481 	DATA 	Keypress: o
+206.4574 	Level RINSE 	25
+208.4492 	DATA 	Keypress: o
+214.4444 	Level finished 	25
+214.4464 	DATA 	Keypress: o
+214.4481 	DATA 	Keypress: o
+214.4494 	DATA 	Keypress: o
+214.8448 	Level a.jpg at position=left and b.jpg at position=right 	25
+216.4457 	DATA 	Keypress: 2
+216.4469 	DATA 	Keypress: o
+216.4590 	Level keypress=2 at time= 1.570566 	25
+216.4596 	Level injecting via pump at address 2 and a keypress of 2 and image of b.jpg 	25
+221.4498 	DATA 	Keypress: 2
+221.4508 	DATA 	Keypress: o
+221.4517 	DATA 	Keypress: o
+222.4468 	DATA 	Keypress: o
+222.4595 	Level RINSE 	25
+224.4521 	DATA 	Keypress: o
+229.4444 	Level finished 	25
+229.4459 	DATA 	Keypress: o
+229.4471 	DATA 	Keypress: o
+229.8196 	Level c.jpg at position=left and d.jpg at position=right 	25
+231.4457 	DATA 	Keypress: o
+231.4469 	DATA 	Keypress: 1
+231.4604 	Level keypress=1 at time= 1.603050 	25
+231.4609 	Level injecting via pump at address 1 and a keypress of 1 and image of c.jpg 	25
+236.4506 	DATA 	Keypress: o
+236.4522 	DATA 	Keypress: o
+236.4536 	DATA 	Keypress: o
+237.4612 	Level RINSE 	25
+239.4497 	DATA 	Keypress: o
+244.4444 	Level finished 	25
+244.4466 	DATA 	Keypress: o
+244.4484 	DATA 	Keypress: o
+244.4497 	DATA 	Keypress: o
+244.8268 	Level c.jpg at position=right and d.jpg at position=left 	25
+246.4456 	DATA 	Keypress: 2
+246.4468 	DATA 	Keypress: o
+246.4789 	Level keypress=2 at time= 1.600324 	25
+246.4793 	Level injecting via pump at address 2 and a keypress of 2 and image of c.jpg 	25
+251.4499 	DATA 	Keypress: o
+251.4512 	DATA 	Keypress: o
+252.4473 	DATA 	Keypress: o
+252.4630 	Level RINSE 	25
+254.4511 	DATA 	Keypress: o
+259.4444 	Level finished 	25
+259.4460 	DATA 	Keypress: o
+259.4471 	DATA 	Keypress: o
+259.8243 	Level f.jpg at position=right and e.jpg at position=left 	25
+261.4455 	DATA 	Keypress: o
+261.4466 	DATA 	Keypress: 2
+261.4643 	Level keypress=2 at time= 1.599591 	25
+261.4648 	Level injecting via pump at address 2 and a keypress of 2 and image of f.jpg 	25
+266.4517 	DATA 	Keypress: o
+266.4534 	DATA 	Keypress: o
+266.4551 	DATA 	Keypress: o
+267.4647 	Level RINSE 	25
+269.4493 	DATA 	Keypress: o
+272.4444 	Level finished 	25
+272.4458 	DATA 	Keypress: o
+272.4469 	DATA 	Keypress: o
+272.8182 	Level f.jpg at position=left and e.jpg at position=right 	25
+274.4455 	DATA 	Keypress: 2
+274.4466 	DATA 	Keypress: o
+274.4654 	Level keypress=2 at time= 1.596560 	25
+274.4658 	Level injecting via pump at address 2 and a keypress of 2 and image of e.jpg 	25
+279.4494 	DATA 	Keypress: o
+279.4506 	DATA 	Keypress: o
+280.4470 	DATA 	Keypress: o
+280.4663 	Level RINSE 	25
+282.4494 	DATA 	Keypress: o
+286.4444 	Level finished 	25
+286.4460 	DATA 	Keypress: o
+286.4473 	DATA 	Keypress: o
+286.8299 	Level b.jpg at position=left and a.jpg at position=right 	25
+288.4456 	DATA 	Keypress: 1
+288.4468 	DATA 	Keypress: o
+288.4670 	Level keypress=1 at time= 1.578616 	25
+288.4675 	Level injecting via pump at address 2 and a keypress of 1 and image of b.jpg 	25
+293.4492 	DATA 	Keypress: o
+293.4504 	DATA 	Keypress: o
+294.4472 	DATA 	Keypress: o
+294.4680 	Level RINSE 	25
+296.4539 	DATA 	Keypress: o
+301.4444 	Level finished 	25
+301.4462 	DATA 	Keypress: o
+301.4476 	DATA 	Keypress: o
+301.8198 	Level c.jpg at position=left and d.jpg at position=right 	25
+303.4455 	DATA 	Keypress: o
+303.4465 	DATA 	Keypress: 1
+303.4692 	Level keypress=1 at time= 1.594523 	25
+303.4697 	Level injecting via pump at address 1 and a keypress of 1 and image of c.jpg 	25
+308.4495 	DATA 	Keypress: o
+308.4506 	DATA 	Keypress: o
+308.4517 	DATA 	Keypress: o
+309.4530 	Level RINSE 	25
+311.4497 	DATA 	Keypress: o
+317.4444 	Level finished 	25
+317.4460 	DATA 	Keypress: o
+317.4470 	DATA 	Keypress: o
+317.4480 	DATA 	Keypress: o
+317.8280 	Level d.jpg at position=right and c.jpg at position=left 	25
+319.4456 	DATA 	Keypress: o
+319.4469 	DATA 	Keypress: 1
+319.4481 	DATA 	Keypress: 1
+319.4707 	Level keypress=1 at time= 1.592650 	25
+319.4712 	Level injecting via pump at address 1 and a keypress of 1 and image of c.jpg 	25
+324.4497 	DATA 	Keypress: o
+324.4508 	DATA 	Keypress: o
+324.4517 	DATA 	Keypress: o
+325.4549 	Level RINSE 	25
+327.4516 	DATA 	Keypress: o
+331.4444 	Level finished 	25
+331.4458 	DATA 	Keypress: o
+331.4470 	DATA 	Keypress: o
+331.8110 	Level d.jpg at position=right and c.jpg at position=left 	25
+333.4456 	DATA 	Keypress: o
+333.4468 	DATA 	Keypress: 2
+333.4723 	Level keypress=2 at time= 1.607944 	25
+333.4727 	Level injecting via pump at address 2 and a keypress of 2 and image of d.jpg 	25
+338.4499 	DATA 	Keypress: o
+338.4511 	DATA 	Keypress: o
+338.4521 	DATA 	Keypress: o
+339.4732 	Level RINSE 	25
+341.4489 	DATA 	Keypress: o
+344.4444 	Level finished 	25
+344.4460 	DATA 	Keypress: o
+344.4471 	DATA 	Keypress: o
+344.8233 	Level c.jpg at position=right and d.jpg at position=left 	25
+346.4459 	DATA 	Keypress: 2
+346.4476 	DATA 	Keypress: o
+346.4738 	Level keypress=2 at time= 1.605617 	25
+346.4743 	Level injecting via pump at address 2 and a keypress of 2 and image of c.jpg 	25
+351.4497 	DATA 	Keypress: o
+351.4506 	DATA 	Keypress: o
+352.4468 	DATA 	Keypress: o
+352.4747 	Level RINSE 	25
+354.4494 	DATA 	Keypress: o
+359.4444 	Level finished 	25
+359.4463 	DATA 	Keypress: o
+359.4475 	DATA 	Keypress: o
+359.8216 	Level e.jpg at position=right and f.jpg at position=left 	25
+361.4455 	DATA 	Keypress: o
+361.4465 	DATA 	Keypress: 1
+361.4760 	Level keypress=1 at time= 1.604322 	25
+361.4765 	Level injecting via pump at address 2 and a keypress of 1 and image of f.jpg 	25
+366.4513 	DATA 	Keypress: o
+366.4532 	DATA 	Keypress: o
+366.4546 	DATA 	Keypress: o
+367.4597 	Level RINSE 	25
+369.4494 	DATA 	Keypress: o
+374.4444 	Level finished 	25
+374.4461 	DATA 	Keypress: o
+374.4474 	DATA 	Keypress: o
+374.4485 	DATA 	Keypress: o
+374.8292 	Level f.jpg at position=left and e.jpg at position=right 	25
+376.4457 	DATA 	Keypress: o
+376.4470 	DATA 	Keypress: 1
+376.4606 	Level keypress=1 at time= 1.602651 	25
+376.4611 	Level injecting via pump at address 2 and a keypress of 1 and image of f.jpg 	25
+381.4502 	DATA 	Keypress: o
+381.4515 	DATA 	Keypress: o
+382.4469 	DATA 	Keypress: o
+382.4616 	Level RINSE 	25
+384.4497 	DATA 	Keypress: o
+388.4444 	Level finished 	25
+388.4461 	DATA 	Keypress: o
+388.4473 	DATA 	Keypress: o
+388.8257 	Level f.jpg at position=right and e.jpg at position=left 	25
+390.4456 	DATA 	Keypress: 1
+390.4469 	DATA 	Keypress: o
+390.4623 	Level keypress=1 at time= 1.600173 	25
+390.4628 	Level injecting via pump at address 1 and a keypress of 1 and image of e.jpg 	25
+395.4497 	DATA 	Keypress: o
+395.4509 	DATA 	Keypress: o
+396.4479 	DATA 	Keypress: o
+396.4630 	Level RINSE 	25
+398.4495 	DATA 	Keypress: o
+402.4444 	Level finished 	25
+402.4459 	DATA 	Keypress: o
+402.4472 	DATA 	Keypress: o
+402.8242 	Level d.jpg at position=right and c.jpg at position=left 	25
+404.4455 	DATA 	Keypress: 2
+404.4465 	DATA 	Keypress: o
+404.4640 	Level keypress=2 at time= 1.598439 	25
+404.4645 	Level injecting via pump at address 2 and a keypress of 2 and image of d.jpg 	25
+409.4499 	DATA 	Keypress: o
+409.4511 	DATA 	Keypress: o
+410.4468 	DATA 	Keypress: o
+410.4649 	Level RINSE 	25
+412.4489 	DATA 	Keypress: o
+418.4444 	Level finished 	25
+418.4462 	DATA 	Keypress: o
+418.4474 	DATA 	Keypress: o
+418.4485 	DATA 	Keypress: o
+418.8275 	Level c.jpg at position=left and d.jpg at position=right 	25
+420.4455 	DATA 	Keypress: 1
+420.4464 	DATA 	Keypress: o
+420.4663 	Level keypress=1 at time= 1.596511 	25
+420.4667 	Level injecting via pump at address 2 and a keypress of 1 and image of c.jpg 	25
+425.4494 	DATA 	Keypress: o
+425.4505 	DATA 	Keypress: o
+426.4483 	DATA 	Keypress: o
+426.4665 	Level RINSE 	25
+428.4497 	DATA 	Keypress: o
+434.4444 	Level finished 	25
+434.4462 	DATA 	Keypress: o
+434.4474 	DATA 	Keypress: o
+434.4485 	DATA 	Keypress: o
+434.8206 	Level d.jpg at position=left and c.jpg at position=right 	25
+436.4458 	DATA 	Keypress: 2
+436.4471 	DATA 	Keypress: o
+436.4676 	Level keypress=2 at time= 1.594444 	25
+436.4681 	Level injecting via pump at address 1 and a keypress of 2 and image of c.jpg 	25
+441.4501 	DATA 	Keypress: o
+441.4513 	DATA 	Keypress: o
+442.4467 	DATA 	Keypress: o
+442.4685 	Level RINSE 	25
+444.4490 	DATA 	Keypress: o
+450.4444 	Level finished 	25
+450.4461 	DATA 	Keypress: o
+450.4475 	DATA 	Keypress: o
+450.4487 	DATA 	Keypress: o
+450.8242 	Level c.jpg at position=left and d.jpg at position=right 	25
+452.4456 	DATA 	Keypress: 2
+452.4469 	DATA 	Keypress: o
+452.4696 	Level keypress=2 at time= 1.592825 	25
+452.4701 	Level injecting via pump at address 1 and a keypress of 2 and image of d.jpg 	25
+457.4514 	DATA 	Keypress: o
+457.4530 	DATA 	Keypress: o
+458.4472 	DATA 	Keypress: o
+458.4705 	Level RINSE 	25
+460.4492 	DATA 	Keypress: o
+466.4444 	Level finished 	25
+466.4460 	DATA 	Keypress: o
+466.4473 	DATA 	Keypress: o
+466.4485 	DATA 	Keypress: o
+466.8317 	Level c.jpg at position=right and d.jpg at position=left 	25
+468.4456 	DATA 	Keypress: 2
+468.4468 	DATA 	Keypress: o
+468.4551 	Level keypress=2 at time= 1.591079 	25
+468.4557 	Level injecting via pump at address 1 and a keypress of 2 and image of c.jpg 	25
+473.4498 	DATA 	Keypress: o
+473.4511 	DATA 	Keypress: o
+474.4472 	DATA 	Keypress: o
+474.4723 	Level RINSE 	25
+476.4501 	DATA 	Keypress: o
+480.4444 	Level finished 	25
