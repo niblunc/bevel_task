@@ -1,0 +1,96 @@
+ a.jpg at position=right and d.jpg at position=left 	25
+
+ f.jpg at position=left and b.jpg at position=right 	25
+
+ d.jpg at position=right and a.jpg at position=left 	25
+
+ d.jpg at position=left and b.jpg at position=right 	25
+
+ e.jpg at position=right and a.jpg at position=left 	25
+
+ d.jpg at position=right and b.jpg at position=left 	25
+
+ d.jpg at position=left and a.jpg at position=right 	25
+
+ e.jpg at position=right and a.jpg at position=left 	25
+
+ b.jpg at position=left and f.jpg at position=right 	25
+
+ e.jpg at position=right and a.jpg at position=left 	25
+
+ e.jpg at position=left and b.jpg at position=right 	25
+
+ c.jpg at position=left and b.jpg at position=right 	25
+
+ c.jpg at position=left and a.jpg at position=right 	25
+
+ f.jpg at position=right and a.jpg at position=left 	25
+
+ a.jpg at position=left and d.jpg at position=right 	25
+
+ f.jpg at position=right and b.jpg at position=left 	25
+
+ e.jpg at position=right and b.jpg at position=left 	25
+
+ a.jpg at position=right and d.jpg at position=left 	25
+
+ b.jpg at position=left and f.jpg at position=right 	25
+
+ b.jpg at position=left and d.jpg at position=right 	25
+
+ a.jpg at position=left and d.jpg at position=right 	25
+
+ f.jpg at position=right and a.jpg at position=left 	25
+
+ c.jpg at position=left and a.jpg at position=right 	25
+
+ a.jpg at position=left and f.jpg at position=right 	25
+
+ e.jpg at position=right and a.jpg at position=left 	25
+
+ a.jpg at position=right and e.jpg at position=left 	25
+
+ d.jpg at position=right and a.jpg at position=left 	25
+
+ c.jpg at position=right and a.jpg at position=left 	25
+
+ c.jpg at position=right and b.jpg at position=left 	25
+
+ a.jpg at position=left and e.jpg at position=right 	25
+
+ c.jpg at position=left and b.jpg at position=right 	25
+
+ a.jpg at position=right and f.jpg at position=left 	25
+
+ e.jpg at position=left and b.jpg at position=right 	25
+
+ e.jpg at position=left and b.jpg at position=right 	25
+
+ f.jpg at position=right and b.jpg at position=left 	25
+
+ a.jpg at position=left and f.jpg at position=right 	25
+
+ e.jpg at position=right and b.jpg at position=left 	25
+
+ b.jpg at position=right and f.jpg at position=left 	25
+
+ a.jpg at position=right and d.jpg at position=left 	25
+
+ f.jpg at position=right and b.jpg at position=left 	25
+
+ a.jpg at position=right and d.jpg at position=left 	25
+
+ a.jpg at position=right and c.jpg at position=left 	25
+
+ d.jpg at position=left and b.jpg at position=right 	25
+
+ b.jpg at position=right and e.jpg at position=left 	25
+
+ a.jpg at position=left and d.jpg at position=right 	25
+
+ a.jpg at position=right and c.jpg at position=left 	25
+
+ f.jpg at position=right and a.jpg at position=left 	25
+
+ a.jpg at position=right and c.jpg at position=left 	25
+

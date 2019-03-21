@@ -1,0 +1,228 @@
+16.9724 	WARNING 	User requested fullscreen with size [800 600], but screen is actually [1440, 900]. Using actual size
+20.9262 	DATA 	Keypress: o
+20.9265 	Level start key press 	25
+21.3087 	Level e.jpg at position=right and b.jpg at position=left 	25
+51.9275 	DATA 	Keypress: left
+51.9417 	Level keypress=left at time= 1.985798 	25
+53.4418 	Level finished 	25
+53.7545 	Level f.jpg at position=left and a.jpg at position=right 	25
+57.9273 	DATA 	Keypress: left
+57.9424 	Level keypress=left at time= 1.985074 	25
+59.4425 	Level finished 	25
+59.7573 	Level a.jpg at position=left and e.jpg at position=right 	25
+63.9272 	DATA 	Keypress: right
+63.9432 	Level keypress=right at time= 1.983858 	25
+64.4303 	DATA 	Keypress: right
+65.4432 	Level finished 	25
+65.7602 	Level a.jpg at position=right and c.jpg at position=left 	25
+69.9275 	DATA 	Keypress: left
+69.9436 	Level keypress=left at time= 1.983937 	25
+71.4440 	Level finished 	25
+71.7713 	Level b.jpg at position=right and e.jpg at position=left 	25
+73.9272 	DATA 	Keypress: left
+73.9443 	Level keypress=left at time= 1.982785 	25
+75.4445 	Level finished 	25
+75.7574 	Level c.jpg at position=left and a.jpg at position=right 	25
+78.9272 	DATA 	Keypress: right
+78.9449 	Level keypress=right at time= 1.982757 	25
+80.4448 	Level finished 	25
+80.7985 	Level f.jpg at position=right and a.jpg at position=left 	25
+84.9272 	DATA 	Keypress: right
+84.9456 	Level keypress=right at time= 1.981440 	25
+86.4457 	Level finished 	25
+86.7586 	Level f.jpg at position=right and b.jpg at position=left 	25
+89.9272 	DATA 	Keypress: right
+89.9462 	Level keypress=right at time= 1.981217 	25
+91.4463 	Level finished 	25
+91.7751 	Level b.jpg at position=left and c.jpg at position=right 	25
+95.9272 	DATA 	Keypress: left
+95.9300 	Level keypress=left at time= 1.980133 	25
+97.4470 	Level finished 	25
+97.7692 	Level d.jpg at position=left and b.jpg at position=right 	25
+98.9272 	DATA 	Keypress: right
+100.9272 	DATA 	Keypress: right
+100.9307 	Level keypress=right at time= -0.020074 	25
+102.4476 	Level finished 	25
+102.7588 	Level a.jpg at position=left and f.jpg at position=right 	25
+105.9273 	DATA 	Keypress: left
+105.9314 	Level keypress=left at time= 1.979330 	25
+107.4314 	Level finished 	25
+107.7506 	Level a.jpg at position=right and f.jpg at position=left 	25
+109.9272 	DATA 	Keypress: left
+109.9318 	Level keypress=left at time= 1.979124 	25
+111.4319 	Level finished 	25
+111.7394 	Level d.jpg at position=right and b.jpg at position=left 	25
+113.9272 	DATA 	Keypress: left
+113.9326 	Level keypress=left at time= 1.978479 	25
+115.4325 	Level finished 	25
+115.7646 	Level b.jpg at position=right and c.jpg at position=left 	25
+118.9273 	DATA 	Keypress: left
+118.9283 	DATA 	Keypress: right
+118.9328 	Level keypress=left at time= 1.978224 	25
+120.4329 	Level finished 	25
+120.7423 	Level a.jpg at position=left and f.jpg at position=right 	25
+124.9272 	DATA 	Keypress: left
+124.9340 	Level keypress=left at time= 1.977147 	25
+126.4337 	Level finished 	25
+126.7524 	Level a.jpg at position=right and f.jpg at position=left 	25
+130.9273 	DATA 	Keypress: right
+130.9343 	Level keypress=right at time= 1.976519 	25
+132.4344 	Level finished 	25
+132.7678 	Level d.jpg at position=left and a.jpg at position=right 	25
+136.9272 	DATA 	Keypress: right
+136.9278 	DATA 	Keypress: right
+136.9350 	Level keypress=right at time= 1.975348 	25
+138.4351 	Level finished 	25
+138.7537 	Level d.jpg at position=right and b.jpg at position=left 	25
+140.9272 	DATA 	Keypress: left
+140.9355 	Level keypress=left at time= 1.975293 	25
+142.4356 	Level finished 	25
+142.7600 	Level f.jpg at position=left and b.jpg at position=right 	25
+146.9273 	DATA 	Keypress: right
+146.9362 	Level keypress=right at time= 1.990959 	25
+148.4363 	Level finished 	25
+148.7540 	Level c.jpg at position=left and a.jpg at position=right 	25
+149.9272 	DATA 	Keypress: left
+149.9365 	Level keypress=left at time= 1.157436 	25
+151.4366 	Level finished 	25
+151.7492 	Level a.jpg at position=right and f.jpg at position=left 	25
+153.9274 	DATA 	Keypress: left
+153.9370 	Level keypress=left at time= 1.990563 	25
+155.4374 	Level finished 	25
+155.7574 	Level b.jpg at position=right and e.jpg at position=left 	25
+157.9273 	DATA 	Keypress: left
+157.9374 	Level keypress=left at time= 1.990187 	25
+159.4376 	Level finished 	25
+159.7674 	Level b.jpg at position=left and d.jpg at position=right 	25
+163.9273 	DATA 	Keypress: right
+163.9382 	Level keypress=right at time= 1.989345 	25
+165.4388 	Level finished 	25
+165.7607 	Level b.jpg at position=left and d.jpg at position=right 	25
+167.9273 	DATA 	Keypress: left
+167.9387 	Level keypress=left at time= 1.988865 	25
+169.4387 	Level finished 	25
+169.7695 	Level f.jpg at position=right and b.jpg at position=left 	25
+172.9272 	DATA 	Keypress: right
+172.9392 	Level keypress=right at time= 1.988197 	25
+174.4393 	Level finished 	25
+174.7755 	Level c.jpg at position=right and b.jpg at position=left 	25
+176.9273 	DATA 	Keypress: left
+176.9397 	Level keypress=left at time= 1.987561 	25
+178.4397 	Level finished 	25
+178.7591 	Level b.jpg at position=right and d.jpg at position=left 	25
+180.9272 	DATA 	Keypress: right
+180.9401 	Level keypress=right at time= 1.987432 	25
+182.4402 	Level finished 	25
+182.7684 	Level f.jpg at position=right and a.jpg at position=left 	25
+186.9272 	DATA 	Keypress: left
+186.9409 	Level keypress=left at time= 1.986209 	25
+188.4409 	Level finished 	25
+188.7710 	Level c.jpg at position=right and b.jpg at position=left 	25
+190.9273 	DATA 	Keypress: right
+190.9413 	Level keypress=right at time= 1.986391 	25
+192.4414 	Level finished 	25
+192.7833 	Level d.jpg at position=left and b.jpg at position=right 	25
+195.9273 	DATA 	Keypress: left
+195.9423 	Level keypress=left at time= 1.985578 	25
+197.4420 	Level finished 	25
+197.7698 	Level d.jpg at position=left and b.jpg at position=right 	25
+199.9272 	DATA 	Keypress: left
+199.9424 	Level keypress=left at time= 1.985200 	25
+201.4425 	Level finished 	25
+201.7663 	Level a.jpg at position=right and f.jpg at position=left 	25
+203.9272 	DATA 	Keypress: left
+205.9273 	DATA 	Keypress: right
+205.9435 	Level keypress=left at time= -0.015655 	25
+206.4307 	DATA 	Keypress: left
+207.4309 	DATA 	Keypress: right
+207.4314 	DATA 	Keypress: left
+207.4322 	DATA 	Keypress: right
+207.4327 	DATA 	Keypress: left
+207.4432 	Level finished 	25
+207.7776 	Level f.jpg at position=right and b.jpg at position=left 	25
+209.9273 	DATA 	Keypress: right
+209.9278 	DATA 	Keypress: left
+209.9287 	DATA 	Keypress: right
+209.9291 	DATA 	Keypress: left
+209.9299 	DATA 	Keypress: right
+209.9305 	DATA 	Keypress: left
+209.9311 	DATA 	Keypress: right
+209.9317 	DATA 	Keypress: left
+209.9322 	DATA 	Keypress: right
+209.9326 	DATA 	Keypress: left
+209.9334 	DATA 	Keypress: right
+209.9338 	DATA 	Keypress: left
+211.9274 	DATA 	Keypress: right
+211.9280 	DATA 	Keypress: left
+211.9286 	DATA 	Keypress: right
+211.9290 	DATA 	Keypress: left
+211.9298 	DATA 	Keypress: left
+211.9303 	DATA 	Keypress: left
+211.9437 	Level keypress=right at time= -0.016229 	25
+212.4302 	DATA 	Keypress: left
+213.4439 	Level finished 	25
+213.7570 	Level b.jpg at position=left and f.jpg at position=right 	25
+215.9272 	DATA 	Keypress: right
+215.9278 	DATA 	Keypress: right
+215.9446 	Level keypress=right at time= 1.983296 	25
+217.4444 	Level finished 	25
+217.7564 	Level a.jpg at position=left and c.jpg at position=right 	25
+221.9273 	DATA 	Keypress: left
+221.9449 	Level keypress=left at time= 1.982618 	25
+223.4451 	Level finished 	25
+223.7628 	Level f.jpg at position=right and a.jpg at position=left 	25
+225.9272 	DATA 	Keypress: left
+225.9458 	Level keypress=left at time= 1.982036 	25
+227.4455 	Level finished 	25
+227.7652 	Level a.jpg at position=right and c.jpg at position=left 	25
+230.9272 	DATA 	Keypress: left
+230.9459 	Level keypress=left at time= 1.981502 	25
+232.4460 	Level finished 	25
+232.7636 	Level b.jpg at position=right and d.jpg at position=left 	25
+235.9273 	DATA 	Keypress: left
+235.9467 	Level keypress=left at time= 1.981213 	25
+237.4465 	Level finished 	25
+237.7779 	Level e.jpg at position=left and b.jpg at position=right 	25
+239.9273 	DATA 	Keypress: left
+241.9272 	DATA 	Keypress: right
+241.9306 	Level keypress=left at time= -0.019826 	25
+243.4303 	DATA 	Keypress: left
+243.4474 	Level finished 	25
+243.7611 	Level c.jpg at position=right and b.jpg at position=left 	25
+246.9272 	DATA 	Keypress: left
+246.9315 	Level keypress=left at time= 1.979693 	25
+248.4305 	DATA 	Keypress: left
+248.4478 	Level finished 	25
+248.7736 	Level e.jpg at position=right and a.jpg at position=left 	25
+250.9273 	DATA 	Keypress: left
+252.9273 	DATA 	Keypress: left
+252.9318 	Level keypress=left at time= -0.020804 	25
+254.4320 	Level finished 	25
+254.7508 	Level e.jpg at position=right and a.jpg at position=left 	25
+258.9272 	DATA 	Keypress: left
+258.9326 	Level keypress=left at time= 1.977779 	25
+260.4327 	Level finished 	25
+260.7523 	Level f.jpg at position=right and a.jpg at position=left 	25
+264.9273 	DATA 	Keypress: right
+264.9333 	Level keypress=right at time= 1.977815 	25
+266.4334 	Level finished 	25
+266.7527 	Level b.jpg at position=left and e.jpg at position=right 	25
+270.9272 	DATA 	Keypress: left
+270.9340 	Level keypress=left at time= 1.976302 	25
+272.4341 	Level finished 	25
+272.7556 	Level d.jpg at position=right and b.jpg at position=left 	25
+276.9274 	DATA 	Keypress: right
+276.9282 	DATA 	Keypress: left
+276.9347 	Level keypress=right at time= 1.976222 	25
+278.4348 	Level finished 	25
+278.7688 	Level b.jpg at position=left and c.jpg at position=right 	25
+278.8014 	Level Key Press Missed! 	25
+278.8682 	Level finished 	25
+279.2024 	Level d.jpg at position=left and a.jpg at position=right 	25
+279.2350 	Level Key Press Missed! 	25
+279.4350 	Level finished 	25
+279.7661 	Level e.jpg at position=left and a.jpg at position=right 	25
+281.9273 	DATA 	Keypress: left
+283.9273 	DATA 	Keypress: right
+283.9355 	Level keypress=left at time= -0.024440 	25
+285.4356 	Level finished 	25
