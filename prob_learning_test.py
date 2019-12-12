@@ -48,12 +48,12 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/onsets'
-subdata['conds']='/Users/'+info['computer']+'/Documents/bevel_task/test_onset_files/conds'
+subdata['onset']='/Users/'+info['computer']+'/Documents/2019_bevel_pilot/test_onset_files/onsets'
+subdata['conds']='/Users/'+info['computer']+'/Documents/2019_bevel_pilot/test_onset_files/conds'
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/bevel_task/Output/beveltest_%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/2019_bevel_pilot/output/%s_%s_posttest_subdata.log'%(info['participant'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -325,11 +325,11 @@ run_block(fix)
 #subdata['key_responses']=keys_responses
 
 subdata.update(info)
-f=open('/Users/'+info['computer']+'/Documents/bevel_task/Output/Bevel_test_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/2019_bevel_pilot/output/%s_%s_posttest_subdata.log'%(info['participant'],subdata['datestamp']))
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/'+info['computer']+'/Documents/bevel_task/Output/Bevel_test_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/2019_bevel_pilot/output/%s_%s_posttest_subdata.csv'%(info['participant'],subdata['datestamp'],'wb'))
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:

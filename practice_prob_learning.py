@@ -1,7 +1,7 @@
 # Demo file for Spyder Tutorial
 # Hans Fangohr, University of Southampton, UK
 
-import numpy as N
+import numpy as np
 from random import shuffle
 
 positions = [(0.25,0), (-0.25,0)]
@@ -32,7 +32,7 @@ indices=[0,1]
 
 print(stim_list)
 
-x=int(N.random.choice(prob_index, 1, p=[0.34, 0.33,0.33]))
+x=int(np.random.choice(prob_index, 1, p=[0.34, 0.33,0.33]))
 stim_images=stim_list[x]
 trial_prob=prob_list[x]
 trial_inv_prob=inv_prob_list[x]

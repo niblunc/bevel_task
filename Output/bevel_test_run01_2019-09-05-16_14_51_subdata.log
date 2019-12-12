@@ -1,0 +1,37 @@
+6.1311 	DATA 	Keypress: o
+6.1315 	Level start key press 	25
+6.1315 	Level fixation 0.000000 	25
+14.1370 	Level fixation end 0.000000 	25
+14.1371 	Level START 	25
+14.3995 	Level a.jpg at position=left and b.jpg at position=right 	25
+16.1384 	DATA 	Keypress: 1
+16.1540 	Level keypress=1 at time= 1.718776 	25
+16.1592 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+29.1371 	Level finished 	25
+29.3975 	Level a.jpg at position=right and b.jpg at position=left 	25
+31.1384 	DATA 	Keypress: 1
+31.1585 	Level keypress=1 at time= 1.731412 	25
+31.1620 	Level Reinforcement of 2 and a keypress of 1 for image of b.jpg 	25
+45.1371 	Level finished 	25
+45.3954 	Level b.jpg at position=right and a.jpg at position=left 	25
+47.1384 	DATA 	Keypress: 1
+47.1455 	Level keypress=1 at time= 1.728844 	25
+47.1490 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+59.1371 	Level finished 	25
+59.1426 	DATA 	Mouse: Left button down, pos=(5,557)
+59.1430 	DATA 	Mouse:  Left button up, pos=(5,557)
+59.4192 	Level e.jpg at position=right and f.jpg at position=left 	25
+61.1382 	Level Key Press Missed! 	25
+66.1565 	DATA 	Mouse: Left button down, pos=(220,322)
+66.1567 	DATA 	Mouse:  Left button up, pos=(220,322)
+67.1415 	DATA 	Keypress: q
+67.1425 	DATA 	Keypress: q
+67.1435 	DATA 	Keypress: q
+67.1447 	DATA 	Keypress: q
+67.1456 	DATA 	Keypress: q
+69.1409 	DATA 	Keypress: q
+69.1419 	DATA 	Keypress: q
+72.1371 	Level finished 	25
+72.1384 	DATA 	Mouse: Left button down, pos=(219,439)
+72.1386 	DATA 	Mouse:  Left button up, pos=(219,439)
+72.1396 	DATA 	Keypress: q

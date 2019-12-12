@@ -1,0 +1,46 @@
+6.3814 	DATA 	Keypress: o
+6.3817 	Level start key press 	25
+6.3817 	Level fixation 0.000001 	25
+14.3859 	Level fixation end 0.000001 	25
+14.3859 	Level START 	25
+14.6436 	Level c.jpg at position=left and d.jpg at position=right 	25
+16.3874 	DATA 	Keypress: 1
+16.4058 	Level keypress=1 at time= 1.731567 	25
+16.4111 	Level Reinforcement of 2 and a keypress of 1 for image of c.jpg 	25
+29.3859 	Level finished 	25
+29.6459 	Level b.jpg at position=right and a.jpg at position=left 	25
+31.3873 	DATA 	Keypress: 1
+31.4094 	Level keypress=1 at time= 1.732283 	25
+31.4135 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+45.3859 	Level finished 	25
+45.6484 	Level d.jpg at position=right and c.jpg at position=left 	25
+47.3873 	DATA 	Keypress: 1
+47.3964 	Level keypress=1 at time= 1.727827 	25
+47.4005 	Level Reinforcement of 2 and a keypress of 1 for image of c.jpg 	25
+59.3859 	Level finished 	25
+59.6648 	Level e.jpg at position=left and f.jpg at position=right 	25
+61.3873 	DATA 	Keypress: 1
+61.3999 	Level keypress=1 at time= 1.708308 	25
+61.4038 	Level Reinforcement of 1 and a keypress of 1 for image of e.jpg 	25
+72.3859 	Level finished 	25
+72.6501 	Level e.jpg at position=left and f.jpg at position=right 	25
+74.3872 	DATA 	Keypress: 1
+74.4031 	Level keypress=1 at time= 1.720520 	25
+74.4071 	Level Reinforcement of 1 and a keypress of 1 for image of e.jpg 	25
+87.3859 	Level finished 	25
+87.6561 	Level b.jpg at position=left and a.jpg at position=right 	25
+89.3873 	DATA 	Keypress: 1
+89.4071 	Level keypress=1 at time= 1.716670 	25
+89.4110 	Level Reinforcement of 1 and a keypress of 1 for image of b.jpg 	25
+101.3859 	Level finished 	25
+101.6509 	Level f.jpg at position=left and e.jpg at position=right 	25
+103.3872 	DATA 	Keypress: 1
+103.3942 	Level keypress=1 at time= 1.730561 	25
+103.3981 	Level Reinforcement of 1 and a keypress of 1 for image of f.jpg 	25
+114.3859 	Level finished 	25
+114.3880 	DATA 	Keypress: escape
+114.6484 	Level a.jpg at position=right and b.jpg at position=left 	25
+116.3963 	Level Key Press Missed! 	25
+117.3883 	DATA 	Keypress: q
+122.3883 	DATA 	Keypress: q
+129.3859 	Level finished 	25

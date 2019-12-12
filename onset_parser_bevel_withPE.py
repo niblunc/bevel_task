@@ -35,14 +35,12 @@ for file in glob.glob(os.path.join(basepath,'bevel*.log')):
         AB_img_onsets=[]
         CD_img_onsets=[]
         EF_img_onsets=[]
-        #sweet_onset=[]
-        #bitter_onset=[]
         neu_onset=[]
         sweet_expected_onset=[]
         sweet_PE_onset=[]
         bitter_expected_onset=[]
         bitter_PE_onset=[]
-        #RT=[]
+        RT=[]
         start_time=None
         
         for x in infile.readlines():
@@ -68,20 +66,14 @@ for file in glob.glob(os.path.join(basepath,'bevel*.log')):
                     #img_onsets.append(float(l_s[0]))
 
                     if l_s[2] == 'a.jpg' or l_s[2] == 'b.jpg':
-
                         AB_img_onsets.append(float(l_s[0]))
                     if l_s[2] == 'c.jpg' or l_s[2] == 'd.jpg':
-
                         CD_img_onsets.append(float(l_s[0]))
                     if l_s[2] == 'e.jpg' or l_s[2] == 'f.jpg':
 
                         EF_img_onsets.append(float(l_s[0]))
                 if x.find('Level injecting via pump at address ')>-1:#find the tasty image
                     l_s=x.strip().split()
-                    #print(l_s)
-                    #if l_s[7] == '1':
-                        #sweet_onset.append(l_s[0])
-#                   expected sweet
                     if l_s[7] == '1' and l_s[16] == 'a.jpg':
                         sweet_expected_onset.append(l_s[0])
                     if l_s[7] == '1' and l_s[16] == 'c.jpg':

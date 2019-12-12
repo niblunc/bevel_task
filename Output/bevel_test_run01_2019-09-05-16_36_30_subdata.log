@@ -1,0 +1,60 @@
+7.0993 	DATA 	Keypress: o
+7.0995 	Level start key press 	25
+7.0995 	Level fixation 0.000001 	25
+15.0918 	Level fixation end 0.000001 	25
+15.0919 	Level START 	25
+15.3665 	Level e.jpg at position=right and f.jpg at position=left 	25
+17.0932 	DATA 	Keypress: 1
+17.1108 	Level keypress=1 at time= 1.714194 	25
+17.1159 	Level Reinforcement of 2 and a keypress of 1 for image of f.jpg 	25
+30.0919 	Level finished 	25
+30.3507 	Level a.jpg at position=left and b.jpg at position=right 	25
+32.0932 	DATA 	Keypress: 1
+32.1145 	Level keypress=1 at time= 1.731896 	25
+32.1185 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+46.0919 	Level finished 	25
+46.3557 	Level b.jpg at position=right and a.jpg at position=left 	25
+48.0932 	DATA 	Keypress: 1
+48.1029 	Level keypress=1 at time= 1.727870 	25
+48.1069 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+60.0919 	Level finished 	25
+60.3573 	Level e.jpg at position=left and f.jpg at position=right 	25
+62.0932 	DATA 	Keypress: 1
+62.1058 	Level keypress=1 at time= 1.723810 	25
+62.1098 	Level Reinforcement of 1 and a keypress of 1 for image of e.jpg 	25
+73.0919 	Level finished 	25
+73.3418 	Level d.jpg at position=right and c.jpg at position=left 	25
+75.0932 	DATA 	Keypress: 1
+75.1091 	Level keypress=1 at time= 1.739136 	25
+75.1131 	Level Reinforcement of 2 and a keypress of 1 for image of c.jpg 	25
+88.0919 	Level finished 	25
+88.3442 	Level b.jpg at position=left and a.jpg at position=right 	25
+90.0932 	DATA 	Keypress: 1
+90.1137 	Level keypress=1 at time= 1.735407 	25
+90.1177 	Level Reinforcement of 2 and a keypress of 1 for image of b.jpg 	25
+102.0919 	Level finished 	25
+102.3556 	Level b.jpg at position=left and a.jpg at position=right 	25
+104.0932 	DATA 	Keypress: 1
+104.1162 	Level keypress=1 at time= 1.731090 	25
+104.1202 	Level Reinforcement of 1 and a keypress of 1 for image of b.jpg 	25
+115.0919 	Level finished 	25
+115.3550 	Level a.jpg at position=left and b.jpg at position=right 	25
+117.0932 	DATA 	Keypress: 1
+117.1023 	Level keypress=1 at time= 1.727188 	25
+117.1063 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+130.0919 	Level finished 	25
+130.3558 	Level a.jpg at position=left and b.jpg at position=right 	25
+132.0931 	DATA 	Keypress: 1
+132.1069 	Level keypress=1 at time= 1.723387 	25
+132.1111 	Level Reinforcement of 2 and a keypress of 1 for image of a.jpg 	25
+143.0919 	Level finished 	25
+143.3514 	Level a.jpg at position=left and b.jpg at position=right 	25
+145.0932 	DATA 	Keypress: 1
+145.1108 	Level keypress=1 at time= 1.733844 	25
+145.1147 	Level Reinforcement of 1 and a keypress of 1 for image of a.jpg 	25
+156.0919 	Level finished 	25
+156.3525 	Level c.jpg at position=left and d.jpg at position=right 	25
+158.0934 	DATA 	Keypress: escape
+158.1127 	Level Key Press Missed! 	25
+159.0941 	DATA 	Keypress: q
+171.0919 	Level finished 	25

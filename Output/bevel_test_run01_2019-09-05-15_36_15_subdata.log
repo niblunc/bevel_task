@@ -1,0 +1,20 @@
+2104.2286 	DATA 	Keypress: o
+2104.2289 	Level start key press 	25
+2104.2289 	Level fixation 0.000001 	25
+2112.2353 	Level fixation end 0.000001 	25
+2112.2353 	Level START 	25
+2112.5027 	Level a.jpg at position=left and b.jpg at position=right 	25
+2114.2367 	DATA 	Keypress: 1
+2114.2533 	Level keypress=1 at time= 1.719078 	25
+2114.2586 	Level Reinforcement of 2 and a keypress of 1 for image of a.jpg 	25
+2127.2353 	Level finished 	25
+2127.4937 	Level c.jpg at position=left and d.jpg at position=right 	25
+2129.2367 	DATA 	Keypress: 1
+2129.2567 	Level keypress=1 at time= 1.731444 	25
+2129.2602 	Level Reinforcement of 1 and a keypress of 1 for image of c.jpg 	25
+2137.2392 	DATA 	Keypress: escape
+2143.2353 	Level finished 	25
+2143.2375 	DATA 	Keypress: q
+2143.2385 	DATA 	Keypress: q
+2143.2395 	DATA 	Keypress: q
+2143.2404 	DATA 	Keypress: q
